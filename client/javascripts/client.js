@@ -47,16 +47,16 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 app.service('userService', function ($http) {
     console.log('userService is alive!');
     this.authUser = function () {
-        return $http.get("/api/auth");
+        return $http.get("/api/users");
     }
     this.getUsers = function () {
-        return $http.get('/api/auth');
+        return $http.get('/api/users');
     }
     this.getUser = function () {
-        return $http.get('/api/auth', id);
+        return $http.get('/api/users', id);
     }
     this.updateUser = function (user) {
-        return $http.post('/api/auth/:id', user, user._id);
+        return $http.post('/api/users/:id', user, user._id);
     }
 
 });
