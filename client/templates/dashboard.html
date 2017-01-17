@@ -1,0 +1,207 @@
+
+<h1>{{user.local.email}}</h1>
+
+<div class="container mt-2">
+    <div class="row">
+        <div class="col">
+            <h2>Payments</h2>
+        </div>
+        <div class="col text-right">
+            <button class="btn btn-primary" data-toggle="modal" data-target=".new-payment-modal">New Payment</button>
+        </div>
+    </div>
+    <div class="modal fade new-payment-modal" id="newPaymentModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">New Payment</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <form role="form" ng-controller="FormCtrl">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="">Select a Location</label>
+                            <!--<select ng-model="data.estName"-->
+                                    <!--ng-init="data.estName = options[0]"-->
+                                    <!--class="custom-select form-control">-->
+                                <!--<option value="Jimmys" selected="selected">Jimmys</option>-->
+                                <!--<option value="Jacks">Jacks</option>-->
+                            <!--</select>-->
+                            <input type="text" class="form-control" ng-model="data.estName">
+                        </div>
+
+                        <div class="d-none">
+                            <input type="text" class="form-control" ng-model="data.estAddr1">
+                            <input type="text" class="form-control" ng-model="data.estAddr2">
+                            <input type="text" class="form-control" ng-model="data.licenseNum">
+                            <input type="text" class="form-control" ng-model="data.licenseNum">
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="">Filing For</label>
+                                    <input type="text" class="form-control"
+                                           ng-model="data.reportMonthYear"
+                                           placeholder="Month">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="">Gross Alcohol Sales</label>
+                                    <input type="number" class="form-control" ng-model="data.grossSales" placeholder="Gross Sales">
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="">Total Taxes</label>
+                                    <input type="number" class="form-control" placeholder="0.00">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="">Interest</label>
+                                    <input type="number" class="form-control" placeholder="0.00">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="">Vendor Compensation</label>
+                                    <input type="number" class="form-control" placeholder="0.00">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="">Penalty</label>
+                                    <input type="number" class="form-control" placeholder="0.00">
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="text-muted">Total Due</div>
+                        <h5>$2000.00</h5>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" data-dismiss="modal" ng-click="submitForm()">Save changes</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <hr class="mb-2">
+
+    <div class="row hidden-sm-down text-muted">
+        <div class="col-md-4">
+            Location Name
+        </div>
+        <div class="col-md-2">
+            Month
+        </div>
+        <div class="col-md-3">
+            Amount Due
+        </div>
+        <div class="col-md-3">
+            Actions
+        </div>
+    </div>
+
+    <hr class="hidden-sm-down">
+
+    <div class="row">
+        <div class="col-md-4">
+            <strong>Jimmys</strong>
+        </div>
+        <div class="col-md-2">
+            12/2016
+        </div>
+        <div class="col-md-3">
+            $2000.00
+        </div>
+        <div class="col-md-3">
+            <span class="mr-1 text-link" data-toggle="modal" data-target=".edit-payment-modal">Edit</span>
+            <a href="pdfs/Jimmys_2017-01.pdf" class="text-link mr-1">View PDF</a>
+            <div class="modal fade edit-payment-modal">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Edit Payment</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="">Filing For</label>
+                                        <input type="number" class="form-control" placeholder="Month">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="">Gross Alcohol Sales</label>
+                                        <input type="number" class="form-control" placeholder="Gross Sales">
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="">Total Taxes</label>
+                                        <input type="number" class="form-control" placeholder="0.00">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="">Interest</label>
+                                        <input type="number" class="form-control" placeholder="0.00">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="">Vendor Compensation</label>
+                                        <input type="number" class="form-control" placeholder="0.00">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="">Penalty</label>
+                                        <input type="number" class="form-control" placeholder="0.00">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr>
+                            <div class="text-muted">Total Due</div>
+                            <h5>$2000.00</h5>
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary float-sm-left">Save changes</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Discard</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
