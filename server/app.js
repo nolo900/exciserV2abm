@@ -10,7 +10,7 @@ var session = require('express-session');
 
 
 var index = require('./routes/index');
-var users = require('./routes/users');
+var auth = require('./routes/auth');
 var locations = require('./routes/locations');
 var forms = require('./routes/forms');
 
@@ -72,7 +72,7 @@ passportConfigFunction(passport);
 ////////////////////////////////////////////////
 
 app.use('/', index);
-app.use('/api/users', users);
+app.use('/api/auth/', auth);
 app.use('/api/locations', locations);
 app.use('/api/forms',forms);
 
