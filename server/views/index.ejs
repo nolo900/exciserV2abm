@@ -8,21 +8,21 @@
 </head>
 <body ng-app="excise">
 
-<!--<nav class="ex-navbar" ng-controller="navCtrl as $ctrl">-->
+<nav class="ex-navbar" ng-controller="navCtrl as $ctrl">
 
-  <!--<a ui-sref="/" class="ex-navbar__brand">Exciser</a>-->
+  <a ui-sref="/" class="ex-navbar__brand">Exciser</a>
 
-  <!--<ul class="ex-navbar__nav" ng-show="!$ctrl.user.local.email">-->
-    <!--<li><a ui-sref="login">Login</a></li>-->
-    <!--<li><a ui-sref="signup">Create Account</a></li>-->
-  <!--</ul>-->
+  <ul class="ex-navbar__nav" ng-show="!$ctrl.user.local.email">
+    <li><a ui-sref="login">Login</a></li>
+    <li><a ui-sref="signup">Create Account</a></li>
+  </ul>
 
-  <!--<ul class="ex-navbar__nav" ng-hide="!$ctrl.user.local.email">-->
-    <!--<li><a ui-sref="dashboard">Dashboard</a></li>-->
-    <!--<li><a ui-sref="profile">Profile</a></li>-->
-    <!--<li><a href="/logout">Logout</a></li>-->
-  <!--</ul>-->
-<!--</nav>-->
+  <ul class="ex-navbar__nav" ng-hide="!$ctrl.user.local.email">
+    <li><a ui-sref="dashboard">Dashboard</a></li>
+    <li><a ui-sref="profile">Profile</a></li>
+    <li><a href="/logout">Logout</a></li>
+  </ul>
+</nav>
 
 <main ui-view=""></main>
 <!-- Google Maps-->
