@@ -3,7 +3,7 @@ var router = express.Router();
 var Location = require('../models/locationModel');
 
 /* GET users listing. */
-router.get('/', authenticateAPI, function(req, res, next) {
+router.get('/', function(req, res, next) {
 	Location.find({})
 		.then(function (foundLocations) {
 			res.jsonp({locations: foundLocations});
@@ -22,7 +22,56 @@ router.get('/:id', function (req, res, next) {
 		.catch(function (err) {
 			console.log("Error finding location: ", err);
 		})
+});
+
+//Create
+router.post('/add', function (req, res, next) {
+	console.log(req.body);
+
+	Location.create(req.body)
+		.then(function (addedLocation) {
+			console.log("added location:", addedLocation);
+			res.jsonp({location: addedLocation});
+		})
+		.catch(function (err) {
+			console.log("error adding location:", err);
+		})
+
+});
+
+//Update
+router.post('/:id', function (req, res, next) {
+	console.log(req.body);
+
+	Location.findByIdAndUpdate({_id: req.params.id}, req.body)
+		.then(function(savedLocation) {
+			console.log("updating location: ", savedLocation );
+			res.jsonp({ location: savedLocation });
+		})
+		.catch(function(err) {
+			console.log("Error updating location:", err);
+			return next(err);
+		});
+
+
 })
+
+//delete
+router.delete('/:id', function (req, res, next) {
+	console.log(req.body);
+
+	Location.findByIdAndRemove({_id: req.params.id})
+		.then(function (removedLocation) {
+			console.log("location removed: ", removedLocation);
+			res.jsonp({location: removedLocation});
+		})
+		.catch(function (err) {
+			console.log("error removing location", err);
+		})
+
+})
+
+
 
 
 module.exports = router;

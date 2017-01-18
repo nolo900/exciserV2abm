@@ -168,9 +168,7 @@ app.controller('profileCtrl', function(userService) {
     vm.title = 'Profile';
     console.log('Profile is here');
 
-    vm.user = {
-
-    };
+    vm.user = {};
 
     userService.authUser()
         .then(function (res) {
