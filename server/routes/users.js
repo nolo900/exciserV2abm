@@ -23,7 +23,19 @@ router.post('/:id', authenticateAPI, function (req, res, next) {
 
 });
 
+router.delete('/:id', authenticateAPI, function (req, res, next) {
 
+    User.findByIdAndRemove({_id:req.params.id})
+      .then(function (removedUser) {
+        console.log("removed user: ", removedUser);
+        res.jsonp({user: removedUser});
+      })
+      .catch(function (err) {
+        console.log("Error Removing User: ", err);
+        res.status(400).jsonp({user: `Error Removing User: ${req.params.id}`})
+      });
+
+})
 
 module.exports = router;
 

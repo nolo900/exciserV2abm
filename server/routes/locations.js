@@ -54,7 +54,7 @@ router.post('/:id', function (req, res, next) {
 		});
 
 
-})
+});
 
 //delete
 router.delete('/:id', function (req, res, next) {
@@ -69,9 +69,7 @@ router.delete('/:id', function (req, res, next) {
 			console.log("error removing location", err);
 		})
 
-})
-
-
+});
 
 
 module.exports = router;
