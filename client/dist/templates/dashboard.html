@@ -24,14 +24,22 @@
   <header class="component__header">
     <h1 class="component__title">Payments</h1>
   </header>
-  <div class="card-container">
-    <div class="card" ng-repeat="payment in ctrl.user.payments">
-      <div class="card__body">
-        <h5>{{payment.month}}</h5>
-        <h6>{{payment.amount}}</h6>
-        <a href="/">New Payment</a>
-      </div>
-    </div>
+  <div ng-repeat="location in ctrl.user.locations">
+    <h2 class="component__subtitle">{{location.estName}}</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Month</th>
+          <th>Total Sales</th>
+          <th>View</th>
+        </tr>
+        <tr ng-repeat="payment in location.payments">
+          <td>{{payment.month}}</td>
+          <td>{{payment.amount}}</td>
+          <td><a href="/">View</a></td>
+        </tr>
+      </thead>
+    </table>
   </div>
 </article>
 <article class="component">

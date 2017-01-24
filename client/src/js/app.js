@@ -238,13 +238,6 @@ app.controller('chartCtrl', function (userService) {
     var chartMin = 0,
         chartMax = 0;
 
-    // function generateLabels() {
-    //     var arr = vm.user.locations;
-    //     for (let i = 0; i < arr.length; i++) {
-    //         console.log('looping over locations');
-    //     }
-    // }
-
     function pullSales() {
         var arr = vm.user.locations;
         for (let i = 0; i < arr.length; i++) {
@@ -270,10 +263,8 @@ app.controller('chartCtrl', function (userService) {
     }
 
     // Init
-    // generateLabels();
     pullSales();
     chartMinMax();
-
 
     vm.onClick = function (points, evt) {
         console.log(points, evt);

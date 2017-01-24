@@ -322,8 +322,8 @@ hr {
   .dashboard__view.ng-enter {
     -webkit-transition: 300ms;
             transition: 300ms;
-    -webkit-transform: translateX(100%);
-            transform: translateX(100%);
+    -webkit-transform: translateY(2rem);
+            transform: translateY(2rem);
     opacity: 0; }
   .dashboard__view.ng-enter-active {
     -webkit-transform: translateX(0);
@@ -370,6 +370,9 @@ hr {
       font-size: 24.192px;
       margin-bottom: 0.5625rem;
       font-weight: 400; }
+    .dashboard .component__subtitle {
+      margin: 2.25rem 0 0;
+      font-weight: 500; }
     .dashboard .component.chart {
       padding: 2.25rem 1.125rem 0;
       color: #ffffff; }
