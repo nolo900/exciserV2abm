@@ -2,6 +2,7 @@
   background: $gray-lighter;
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
 
   @include breakpoint($small-up) {
     display: flex;
@@ -11,10 +12,14 @@
   }
 
   &__trigger {
-    display: block;
-    line-height: $navbar-height;
+    display: flex;
+    align-items: center;
+    height: $navbar-height;
     padding: 0 $small-spacing;
     cursor: pointer;
+    @include breakpoint($medium-up) {
+      display: none;
+    }
     &:hover {
       color: $brand-primary;
     }
@@ -29,22 +34,26 @@
   }
 
   &__brand {
-    line-height: $navbar-height;
+    display: flex;
+    align-items: center;
     color: $gray;
     font-size: modular-scale(1);
+    padding: 0;
+    @include breakpoint($medium-up) {
+      padding-left: $small-spacing;
+    }
   }
 
   &__nav {
     display: flex;
     a {
+      display: flex;
+      align-items: center;
       color: $gray;
       padding: 0 1.5rem;
-      line-height: $navbar-height;
-      display: inline-block;
-      margin-right: $base-spacing;
+      height: $navbar-height;
       font-size: modular-scale(0);
       @include breakpoint($small-up) {
-        margin-right: 0;
       }
       &:hover {
         color: $brand-primary;
@@ -54,6 +63,7 @@
       }
     }
     .cta {
+      display: none;
       color: #ffffff;
       background: $action-color;
     }

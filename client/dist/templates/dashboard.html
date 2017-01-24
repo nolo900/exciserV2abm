@@ -1,5 +1,5 @@
-<div class="dashboard">
-  <aside class="sidebar">
+<div class="dashboard" ng-controller="dashboardCtrl as ctrl">
+  <aside class="sidebar" ng-class="ctrl.class">
     <div class="sidebar__inner">
       <article class="sidebar__avatar">
         <a href="/">
@@ -23,8 +23,7 @@
       </ul>
     </div>
   </aside>
-
-  <section class="dashboard__main">
+  <section class="dashboard__main" ng-class="ctrl.class">
     <div ng-include="'components/navbar.html'"></div>
     <article class="component">
       <header class="component__header">

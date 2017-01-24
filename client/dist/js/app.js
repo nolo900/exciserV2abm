@@ -23,53 +23,20 @@ app.config(function ($urlRouterProvider, $stateProvider) {
 ////////////////// SERVICES ////////////////////////////////////////////////////////
 app.service('userService', function ($http) {
     console.log('userService is alive!');
-    this.authUser = function () {
-        return $http.get("/api/users");
-    }
-    this.getUsers = function () {
-        return $http.get('/api/users');
-    }
-    this.getUser = function () {
-        return $http.get('/api/users', id);
-    }
-    this.updateUser = function (user) {
-        return $http.post('/api/users/:id', user, user._id);
-    }
+    // this.authUser = function () {
+    //     return $http.get("/api/users");
+    // };
+    // this.getUsers = function () {
+    //     return $http.get('/api/users');
+    // };
+    // this.getUser = function () {
+    //     return $http.get('/api/users', id);
+    // };
+    // this.updateUser = function (user) {
+    //     return $http.post('/api/users/:id', user, user._id);
+    // };
 
-});
-
-app.service('formService', function ($http) {
-    console.log('formService is alive');
-    this.saveForm = function () {
-        return $http.post('/api/forms/:id', form, form._id);
-    }
-});
-
-app.service('locationService', function ($http) {
-    console.log('locationService is alive!');
-    this.getLocations = function () {
-        return $http.get('/api/locations');
-    };
-    this.getLocation = function (id) {
-        return $http.get('/api/locations', id);
-    };
-    this.addLocation = function (location) {
-        return $http.post('/api/locations', location);
-    }
-});
-
-
-////////////// CONTROLLERS ////////////////////////////////////////////////////////
-
-app.controller('homeCtrl', function () {
-    var vm = this;
-    vm.title = 'Home';
-});
-
-app.controller('dashboardCtrl', function ($scope) {
-    var vm = this;
-    vm.title = 'Dashboard';
-    vm.user = {
+    return user = {
         firstName: 'Jimmy',
         lastName: 'McLiqour',
         locations: [
@@ -151,6 +118,49 @@ app.controller('dashboardCtrl', function ($scope) {
                 amount: '$2000.00'
             }
         ]
+    };
+
+});
+
+app.service('formService', function ($http) {
+    console.log('formService is alive');
+    this.saveForm = function () {
+        return $http.post('/api/forms/:id', form, form._id);
+    }
+});
+
+app.service('locationService', function ($http) {
+    console.log('locationService is alive!');
+    this.getLocations = function () {
+        return $http.get('/api/locations');
+    };
+    this.getLocation = function (id) {
+        return $http.get('/api/locations', id);
+    };
+    this.addLocation = function (location) {
+        return $http.post('/api/locations', location);
+    }
+});
+
+
+////////////// CONTROLLERS ////////////////////////////////////////////////////////
+
+app.controller('homeCtrl', function () {
+    var vm = this;
+    vm.title = 'Home';
+});
+
+app.controller('dashboardCtrl', function (userService) {
+    var vm = this;
+    vm.title = 'Dashboard';
+    vm.user = user;
+    vm.class = "";
+    vm.changeClass = function(){
+        if (vm.class === "") {
+            vm.class = "active";
+        } else {
+            vm.class = "";
+        }
     };
 });
 
