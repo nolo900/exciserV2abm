@@ -49,6 +49,7 @@ gulp.task('html', function() {
 
 gulp.task('browser-sync', function() {
     browserSync({
+        notify: false,
         server: {
             baseDir: "./dist/",
             injectChanges: true,

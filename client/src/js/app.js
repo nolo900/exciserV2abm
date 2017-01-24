@@ -1,4 +1,4 @@
-const app = angular.module('excise', ['ui.router', 'chart.js', 'google.places']);
+const app = angular.module('excise', ['ui.router', 'chart.js', 'ngAnimate', 'google.places']);
 
 app.config(function ($urlRouterProvider, $stateProvider) {
 
@@ -8,7 +8,8 @@ app.config(function ($urlRouterProvider, $stateProvider) {
             templateUrl: 'templates/root.html',
             controller: 'homeCtrl',
             controllerAs: 'ctrl'
-        })
+        });
+    $stateProvider
         .state('dashboard', {
             templateUrl: 'templates/root.html',
             controller: 'dashboardCtrl',
@@ -21,9 +22,11 @@ app.config(function ($urlRouterProvider, $stateProvider) {
         .state('dashboard.profile', {
             url: '/profile',
             templateUrl: 'templates/profile.html',
+        })
+        .state('dashboard.logout', {
+            url: '/logout',
+            templateUrl: 'templates/profile.html',
         });
-
-
     $urlRouterProvider.otherwise('/');
 
 });
@@ -51,81 +54,126 @@ app.service('userService', function ($http) {
             {
                 estName: 'Jimmy\'s',
                 county: 'Fulton',
-                phone: '404-366-5050'
+                phone: '404-366-5050',
+                payments: [
+                    {
+                        month: 'December',
+                        date: '12/06/2016',
+                        amount: 1100.00
+                    },
+                    {
+                        month: 'January',
+                        date: '12/06/2016',
+                        amount: 1300.00
+                    },
+                    {
+                        month: 'February',
+                        date: '12/06/2016',
+                        amount: 1900.00
+                    },
+                    {
+                        month: 'March',
+                        date: '12/06/2016',
+                        amount: 1200.00
+                    },
+                ]
             },
             {
                 estName: 'Jack\'s',
                 county: 'Dekalb',
-                phone: '404-366-5050'
+                phone: '404-366-5050',
+                payments: [
+                    {
+                        month: 'December',
+                        date: '12/06/2016',
+                        amount: 800.00
+                    },
+                    {
+                        month: 'January',
+                        date: '12/06/2016',
+                        amount: 300.00
+                    },
+                    {
+                        month: 'February',
+                        date: '12/06/2016',
+                        amount: 500.00
+                    },
+                    {
+                        month: 'March',
+                        date: '12/06/2016',
+                        amount: 600.00
+                    },
+                ]
             },
             {
                 estName: 'Bobby\'s',
                 county: 'Dekalb',
-                phone: '404-366-5050'
+                phone: '404-366-5050',
+                payments: []
             },
         ],
-        payments: [
-            {
-                month: 'December',
-                date: '12/06/2016',
-                amount: '$2000.00'
-            },
-            {
-                month: 'January',
-                date: '1/06/2016',
-                amount: '$2000.00'
-            },
-            {
-                month: 'February',
-                date: '2/06/2016',
-                amount: '$2000.00'
-            },
-            {
-                month: 'March',
-                date: '3/06/2016',
-                amount: '$2000.00'
-            },
-            {
-                month: 'April',
-                date: '4/06/2016',
-                amount: '$2000.00'
-            },
-            {
-                month: 'May',
-                date: '5/06/2016',
-                amount: '$2000.00'
-            },
-            {
-                month: 'June',
-                date: '6/06/2016',
-                amount: '$2000.00'
-            },
-            {
-                month: 'July',
-                date: '7/06/2016',
-                amount: '$2000.00'
-            },
-            {
-                month: 'August',
-                date: '8/06/2016',
-                amount: '$2000.00'
-            },
-            {
-                month: 'September',
-                date: '9/06/2016',
-                amount: '$2000.00'
-            },
-            {
-                month: 'October',
-                date: '10/06/2016',
-                amount: '$2000.00'
-            },
-            {
-                month: 'November',
-                date: '11/06/2016',
-                amount: '$2000.00'
-            }
-        ]
+        // payments: [
+        //     {
+        //         month: 'December',
+        //         date: '12/06/2016',
+        //         amount: 1500.00
+        //     },
+        //     {
+        //         month: 'January',
+        //         date: '1/06/2016',
+        //         amount: 1700.00
+        //     },
+        //     {
+        //         month: 'February',
+        //         date: '2/06/2016',
+        //         amount: 1900.00
+        //     },
+        //     {
+        //         month: 'March',
+        //         date: '3/06/2016',
+        //         amount: 2100.00
+        //     },
+        //     {
+        //         month: 'April',
+        //         date: '4/06/2016',
+        //         amount: 2500.00
+        //     },
+        //     {
+        //         month: 'May',
+        //         date: '5/06/2016',
+        //         amount: 2600.00
+        //     },
+        //     {
+        //         month: 'June',
+        //         date: '6/06/2016',
+        //         amount: 2200.00
+        //     },
+        //     {
+        //         month: 'July',
+        //         date: '7/06/2016',
+        //         amount: 2100.00
+        //     },
+        //     {
+        //         month: 'August',
+        //         date: '8/06/2016',
+        //         amount: 2100.00
+        //     },
+        //     {
+        //         month: 'September',
+        //         date: '9/06/2016',
+        //         amount: 2200.00
+        //     },
+        //     {
+        //         month: 'October',
+        //         date: '10/06/2016',
+        //         amount: 2000.00
+        //     },
+        //     {
+        //         month: 'November',
+        //         date: '11/06/2016',
+        //         amount: 500.00
+        //     }
+        // ]
     };
 
 });
@@ -163,7 +211,7 @@ app.controller('dashboardCtrl', function (userService) {
     vm.title = 'Dashboard';
     vm.user = user;
     vm.navToggle = "";
-    vm.toggleNav = function(){
+    vm.toggleNav = function () {
         if (vm.navToggle === "") {
             vm.navToggle = "active";
         } else {
@@ -178,25 +226,37 @@ app.controller('profileCtrl', function (userService) {
     vm.user = user;
 });
 
-app.controller('chartCtrl', function () {
+app.controller('chartCtrl', function (userService) {
     var vm = this;
+    vm.user = user;
 
-    vm.labels = [
-        "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"
-        // "", "", "", "", "", "", ""
-    ];
-
+    vm.labels = ['Jan', 'Feb', 'March', 'April'];
+    vm.data = [];
     vm.series = ['Location A', 'Location B'];
 
-    vm.data = [
-        [2000, 2300, 2100, 2400, 2200, 1000, 1800],
-        [1500, 1800, 1900, 1700, 1200, 1500, 1200]
-    ];
 
     var chartMin = 0,
         chartMax = 0;
 
-    function findScale() {
+    // function generateLabels() {
+    //     var arr = vm.user.locations;
+    //     for (let i = 0; i < arr.length; i++) {
+    //         console.log('looping over locations');
+    //     }
+    // }
+
+    function pullSales() {
+        var arr = vm.user.locations;
+        for (let i = 0; i < arr.length; i++) {
+            var temp = [];
+            for (let ii = 0; ii < arr[i].payments.length; ii++) {
+                temp.push(arr[i].payments[ii].amount);
+            }
+            vm.data.push(temp);
+        }
+    }
+
+    function chartMinMax() {
         for (let i = 0; i < vm.data.length; i++ ) {
             for (let ii = 0; ii < vm.data[i].length; ii++) {
                 if (vm.data[i][ii] > chartMax) {
@@ -207,7 +267,13 @@ app.controller('chartCtrl', function () {
                 }
             }
         }
-    } findScale();
+    }
+
+    // Init
+    // generateLabels();
+    pullSales();
+    chartMinMax();
+
 
     vm.onClick = function (points, evt) {
         console.log(points, evt);

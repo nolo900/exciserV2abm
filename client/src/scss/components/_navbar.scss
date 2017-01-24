@@ -4,6 +4,8 @@
   flex-direction: column;
   flex-wrap: wrap;
 
+
+
   @include breakpoint($small-up) {
     display: flex;
     flex-direction: row;
@@ -47,20 +49,32 @@
 
   &__nav {
     display: flex;
+    background: $action-color;
+    @include breakpoint($small-up) {
+      background: $gray-lighter;
+    }
     a {
+      text-align: center;
       display: flex;
       align-items: center;
-      color: $gray;
+      color: #ffffff;
       padding: 0 1.5rem;
       height: $navbar-height;
       font-size: modular-scale(0);
-      @include breakpoint($small-up) {
-      }
       &:hover {
-        color: $brand-primary;
+        color: rgba(white,0.8);
       }
       &.active {
-        background: rgba(black,0.1);
+        background: rgba(white,0.2);
+      }
+      @include breakpoint($small-up) {
+        color: $gray;
+        &:hover {
+          color: $gray-dark;
+        }
+        &.active {
+          background: rgba(black,0.1);
+        }
       }
     }
     .cta {

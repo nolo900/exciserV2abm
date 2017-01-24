@@ -1,6 +1,18 @@
 .dashboard {
   position: relative;
   min-height: 100vh;
+  &__view {
+
+    &.ng-enter {
+      transition: 300ms;
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    &.ng-enter-active {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
   &__main {
     position: absolute;
     z-index: 10;
@@ -18,7 +30,7 @@
       max-width: calc(100vw - #{$sidebar-width});
     }
 
-    @include breakpoint($medium-up){
+    @include breakpoint($medium-up) {
       left: $sidebar-width;
       &.active {
         transform: translateX(0);

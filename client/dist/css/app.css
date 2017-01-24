@@ -283,22 +283,34 @@ hr {
   .navbar__nav {
     display: -webkit-box;
     display: -ms-flexbox;
-    display: flex; }
+    display: flex;
+    background: #0275d8; }
+    @media (min-width: 400px) {
+      .navbar__nav {
+        background: #eceeef; } }
     .navbar__nav a {
+      text-align: center;
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
       -webkit-box-align: center;
           -ms-flex-align: center;
               align-items: center;
-      color: #55595c;
+      color: #ffffff;
       padding: 0 1.5rem;
       height: 3rem;
       font-size: 14px; }
       .navbar__nav a:hover {
-        color: #0275d8; }
+        color: rgba(255, 255, 255, 0.8); }
       .navbar__nav a.active {
-        background: rgba(0, 0, 0, 0.1); }
+        background: rgba(255, 255, 255, 0.2); }
+      @media (min-width: 400px) {
+        .navbar__nav a {
+          color: #55595c; }
+          .navbar__nav a:hover {
+            color: #373a3c; }
+          .navbar__nav a.active {
+            background: rgba(0, 0, 0, 0.1); } }
     .navbar__nav .cta {
       display: none;
       color: #ffffff;
@@ -307,6 +319,16 @@ hr {
 .dashboard {
   position: relative;
   min-height: 100vh; }
+  .dashboard__view.ng-enter {
+    -webkit-transition: 300ms;
+            transition: 300ms;
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
+    opacity: 0; }
+  .dashboard__view.ng-enter-active {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1; }
   .dashboard__main {
     position: absolute;
     z-index: 10;
