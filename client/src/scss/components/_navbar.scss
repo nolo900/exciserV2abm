@@ -1,0 +1,61 @@
+.navbar {
+  background: $gray-lighter;
+  display: flex;
+  flex-direction: column;
+
+  @include breakpoint($small-up) {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__trigger {
+    display: block;
+    line-height: $navbar-height;
+    padding: 0 $small-spacing;
+    cursor: pointer;
+    &:hover {
+      color: $brand-primary;
+    }
+  }
+
+  &__title {
+    display: flex;
+  }
+
+  &__trigger {
+    color: $gray-dark;
+  }
+
+  &__brand {
+    line-height: $navbar-height;
+    color: $gray;
+    font-size: modular-scale(1);
+  }
+
+  &__nav {
+    display: flex;
+    a {
+      color: $gray;
+      padding: 0 1.5rem;
+      line-height: $navbar-height;
+      display: inline-block;
+      margin-right: $base-spacing;
+      font-size: modular-scale(0);
+      @include breakpoint($small-up) {
+        margin-right: 0;
+      }
+      &:hover {
+        color: $brand-primary;
+      }
+      &.active {
+        background: rgba(black,0.1);
+      }
+    }
+    .cta {
+      color: #ffffff;
+      background: $action-color;
+    }
+  }
+}

@@ -1,0 +1,86 @@
+<div class="dashboard">
+  <aside class="sidebar">
+    <div class="sidebar__inner">
+      <article class="sidebar__avatar">
+        <a href="/">
+          <div class="image"></div>
+          <strong>{{ctrl.user.firstName}} {{ctrl.user.lastName}}</strong><br>
+          <span>Edit Profile</span>
+        </a>
+      </article>
+      <hr>
+      <h5>Payments</h5>
+      <ul>
+        <li><a href="#">New Payment</a></li>
+        <li><a href="#">View Payments</a></li>
+      </ul>
+      <hr>
+      <h5>Actions</h5>
+      <ul>
+        <li><a href="#">Add a Location</a></li>
+        <li><a href="#">Edit Profile</a></li>
+        <li><a href="#">Logout</a></li>
+      </ul>
+    </div>
+  </aside>
+
+  <section class="dashboard__main">
+    <div ng-include="'components/navbar.html'"></div>
+    <article class="component">
+      <header class="component__header">
+        <h1 class="component__title">Submit a New Payment</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A animi aperiam aut distinctio esse illum, laudantium possimus sed sequi suscipit.</p>
+      </header>
+      <button class="btn">Make Payment</button>
+    </article>
+    <article class="component chart" ng-controller="chartCtrl as ctrl">
+      <div>
+        <canvas id="line"
+                height="75"
+                class="chart chart-line"
+                chart-data="ctrl.data"
+                chart-labels="ctrl.labels"
+                chart-series="ctrl.series"
+                chart-options="ctrl.options"
+                chart-dataset-override="ctrl.datasetOverride"
+                chart-click="ctrl.onClick">
+        </canvas>
+      </div>
+    </article>
+    <article class="component">
+      <header class="component__header">
+        <h1 class="component__title">Payments</h1>
+      </header>
+      <div class="card-container">
+        <div class="card" ng-repeat="payment in ctrl.user.payments">
+          <div class="card__body">
+            <h5>{{payment.month}}</h5>
+            <h6>{{payment.amount}}</h6>
+            <a href="/">New Payment</a>
+          </div>
+        </div>
+      </div>
+    </article>
+    <article class="component">
+      <div class="component__header">
+        <h1 class="component__title">Locations</h1>
+      </div>
+      <div class="card-container">
+        <div class="card" ng-repeat="location in ctrl.user.locations">
+          <div class="card__body">
+            <h5>{{location.estName}}</h5>
+            <p>{{location.county}}</p>
+            <p>{{location.phone}}</p>
+            <hr>
+            <a href="#">Make Payment</a>
+            <a href="#">Edit</a>
+          </div>
+        </div>
+      </div>
+    </article>
+  </section>
+</div>
+
+
+
+
