@@ -1,7 +1,7 @@
-<div ng-include="'components/navbar.html'"></div>
-
-<div class="container">
-    <h2>
-        {{home.title}}
-    </h2>
+<div class="dashboard" ng-controller="dashboardCtrl as ctrl">
+    <div ng-include="'components/sidebar.html'"></div>
+    <section class="dashboard__main" ng-class="ctrl.navToggle">
+        <div ng-include="'components/navbar.html'"></div>
+        <ui-view></ui-view>
+    </section>
 </div>

@@ -1,0 +1,24 @@
+<aside class="sidebar" ng-class="ctrl.navToggle">
+  <div class="sidebar__inner">
+    <article class="sidebar__avatar">
+      <a ui-sref="dashboard.profile">
+        <div class="image"></div>
+        <strong>{{ctrl.user.firstName}} {{ctrl.user.lastName}}</strong><br>
+        <span>Edit Profile</span>
+      </a>
+    </article>
+    <hr>
+    <h5>Payments</h5>
+    <ul>
+      <li><a ui-sref="dashboard.home">New Payment</a></li>
+      <li><a ui-sref="dashboard.home">View Payments</a></li>
+    </ul>
+    <hr>
+    <h5>Actions</h5>
+    <ul>
+      <li><a href="#">Add a Location</a></li>
+      <li><a ui-sref="dashboard.profile" href="">Edit Profile</a></li>
+      <li><a href="#">Logout</a></li>
+    </ul>
+  </div>
+</aside>

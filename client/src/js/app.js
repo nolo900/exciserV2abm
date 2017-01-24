@@ -10,11 +10,19 @@ app.config(function ($urlRouterProvider, $stateProvider) {
             controllerAs: 'ctrl'
         })
         .state('dashboard', {
-            url: '/dashboard',
-            templateUrl: 'templates/dashboard.html',
+            templateUrl: 'templates/root.html',
             controller: 'dashboardCtrl',
             controllerAs: 'ctrl'
+        })
+        .state('dashboard.home', {
+            url: '/dashboard',
+            templateUrl: 'templates/dashboard.html',
+        })
+        .state('dashboard.profile', {
+            url: '/profile',
+            templateUrl: 'templates/profile.html',
         });
+
 
     $urlRouterProvider.otherwise('/');
 
@@ -38,7 +46,7 @@ app.service('userService', function ($http) {
 
     return user = {
         firstName: 'Jimmy',
-        lastName: 'McLiqour',
+        lastName: 'Favor',
         locations: [
             {
                 estName: 'Jimmy\'s',
@@ -154,14 +162,20 @@ app.controller('dashboardCtrl', function (userService) {
     var vm = this;
     vm.title = 'Dashboard';
     vm.user = user;
-    vm.class = "";
-    vm.changeClass = function(){
-        if (vm.class === "") {
-            vm.class = "active";
+    vm.navToggle = "";
+    vm.toggleNav = function(){
+        if (vm.navToggle === "") {
+            vm.navToggle = "active";
         } else {
-            vm.class = "";
+            vm.navToggle = "";
         }
     };
+});
+
+app.controller('profileCtrl', function (userService) {
+    var vm = this;
+    vm.title = 'Profile';
+    vm.user = user;
 });
 
 app.controller('chartCtrl', function () {

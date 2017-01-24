@@ -35,7 +35,16 @@
     border-bottom: $base-border;
 
     &__header {
-      margin-bottom: $base-spacing/2;
+      //margin-bottom: $base-spacing/2;
+      margin-bottom: 0;
+      p {
+        font-size: modular-scale(1);
+        max-width: 35rem;
+        font-weight: 300;
+      }
+      p:last-of-type {
+        margin: 0;
+      }
     }
 
     &__title {

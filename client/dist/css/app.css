@@ -274,7 +274,8 @@ hr {
         -ms-flex-align: center;
             align-items: center;
     color: #55595c;
-    font-size: 16.8px;
+    font-size: 20.16px;
+    font-weight: 400;
     padding: 0; }
     @media (min-width: 960px) {
       .navbar__brand {
@@ -336,7 +337,13 @@ hr {
     padding: 2.25rem 1.125rem;
     border-bottom: 1px solid #eceeef; }
     .dashboard .component__header {
-      margin-bottom: 1.125rem; }
+      margin-bottom: 0; }
+      .dashboard .component__header p {
+        font-size: 16.8px;
+        max-width: 35rem;
+        font-weight: 300; }
+      .dashboard .component__header p:last-of-type {
+        margin: 0; }
     .dashboard .component__title {
       font-size: 24.192px;
       margin-bottom: 0.5625rem;
