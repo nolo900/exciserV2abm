@@ -21,7 +21,7 @@ app.config(function ($urlRouterProvider, $stateProvider) {
         })
         .state('dashboard.profile', {
             url: '/profile',
-            templateUrl: 'templates/profile.html',
+            templateUrl: 'components/dashboard.profile.html',
         })
         .state('dashboard.logout', {
             url: '/logout',

@@ -14,24 +14,20 @@
     }
   }
   &__main {
-    position: absolute;
     z-index: 10;
-    left: 0;
-    right: 0;
     background: #ffffff;
     max-height: 100vh;
     overflow: scroll;
     -webkit-overflow-scrolling: touch;
-    max-width: 100%;
+    width: 100%;
     transition: all 300ms ease;
-
     &.active {
       transform: translateX($sidebar-width);
-      max-width: calc(100vw - #{$sidebar-width});
     }
 
     @include breakpoint($medium-up) {
-      left: $sidebar-width;
+      max-width: calc(100% - #{$sidebar-width});
+      float: right;
       &.active {
         transform: translateX(0);
       }
@@ -74,7 +70,7 @@
       flex-wrap: wrap;
       margin-left: $small-spacing*-0.5;
       margin-right: $small-spacing*-0.5;
-      .col{
+      .col {
         flex: 1 1 30rem;
         margin: 0 $small-spacing/2 $small-spacing;
         min-width: calc(100% - #{$small-spacing});
@@ -88,7 +84,7 @@
           max-width: calc(40% - #{$small-spacing});
         }
       }
-      .col + .col{
+      .col + .col {
         border-top: 0;
         flex: 1 1 30rem;
         margin: 0 $small-spacing/2 0;
@@ -252,7 +248,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(white, 1);
+      background: rgba($gray-dark, 1);
       z-index: 100;
     }
   }
@@ -269,4 +265,8 @@
       z-index: 100;
     }
   }
+}
+
+#user-form {
+  max-width: 24rem;
 }
