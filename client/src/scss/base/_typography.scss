@@ -42,4 +42,7 @@ hr {
   border-right: 0;
   border-top: 0;
   margin: $base-spacing 0;
+  &.hr__small {
+    margin: $base-spacing/2 0;
+  }
 }

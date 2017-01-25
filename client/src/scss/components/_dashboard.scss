@@ -54,20 +54,51 @@
         max-width: 35rem;
         font-weight: 300;
       }
-      p:last-of-type {
-        margin: 0;
-      }
     }
 
     &__title {
-      font-size: modular-scale(3);
+      font-size: modular-scale(4);
       margin-bottom: $small-spacing/2;
       font-weight: 400;
     }
 
     &__subtitle {
-      margin: $base-spacing 0 0;
-      font-weight: 500;
+      font-size: modular-scale(4);
+      margin: 0 0 $small-spacing;
+      font-weight: 400;
+    }
+
+    &__row {
+      margin-top: $base-spacing*0.75;
+      display: flex;
+      flex-wrap: wrap;
+      margin-left: $small-spacing*-0.5;
+      margin-right: $small-spacing*-0.5;
+      .col{
+        flex: 1 1 30rem;
+        margin: 0 $small-spacing/2 $small-spacing;
+        min-width: calc(100% - #{$small-spacing});
+        border-top: solid $action-color 4px;
+        @include breakpoint($small-up) {
+          max-width: calc(100% - #{$small-spacing});
+          min-width: calc(100% - #{$small-spacing});
+        }
+        @include breakpoint($medium-up) {
+          min-width: calc(40% - #{$small-spacing});
+          max-width: calc(40% - #{$small-spacing});
+        }
+      }
+      .col + .col{
+        border-top: 0;
+        flex: 1 1 30rem;
+        margin: 0 $small-spacing/2 0;
+        min-width: calc(100% - #{$small-spacing});
+        max-width: calc(100% - #{$small-spacing});
+        @include breakpoint($medium-up) {
+          min-width: calc(60% - #{$small-spacing});
+          max-width: calc(60% - #{$small-spacing});
+        }
+      }
     }
 
     &.chart {
@@ -77,6 +108,7 @@
         color: #ffffff;
       }
     }
+
   }
 }
 
@@ -204,6 +236,37 @@
           color: $gray-lighter;
         }
       }
+    }
+  }
+}
+
+.main__view {
+  position: relative;
+  &.ng-enter {
+    transition: all 500ms $ease-in-out-quart;
+    opacity: 0;
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(white, 1);
+      z-index: 100;
+    }
+  }
+  &.ng-enter-active {
+    opacity: 1;
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(white, 0);
+      z-index: 100;
     }
   }
 }

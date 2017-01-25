@@ -1,11 +1,12 @@
 <article class="component">
   <header class="component__header">
     <h1 class="component__title">Submit a New Payment</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A animi aperiam aut distinctio esse illum, laudantium possimus sed sequi suscipit.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A animi aperiam aut distinctio esse illum, laudantium
+      possimus sed sequi suscipit.</p>
   </header>
-  <br>
   <button class="btn">Make Payment</button>
 </article>
+
 <article class="component chart" ng-controller="chartCtrl as ctrl">
   <div>
     <canvas id="line"
@@ -20,45 +21,8 @@
     </canvas>
   </div>
 </article>
-<article class="component">
-  <header class="component__header">
-    <h1 class="component__title">Payments</h1>
-  </header>
-  <div ng-repeat="location in ctrl.user.locations">
-    <h2 class="component__subtitle">{{location.estName}}</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Month</th>
-          <th>Total Sales</th>
-          <th>View</th>
-        </tr>
-        <tr ng-repeat="payment in location.payments">
-          <td>{{payment.month}}</td>
-          <td>{{payment.amount}}</td>
-          <td><a href="/">View</a></td>
-        </tr>
-      </thead>
-    </table>
-  </div>
-</article>
-<article class="component">
-  <div class="component__header">
-    <h1 class="component__title">Locations</h1>
-  </div>
-  <div class="card-container">
-    <div class="card" ng-repeat="location in ctrl.user.locations">
-      <div class="card__body">
-        <h5>{{location.estName}}</h5>
-        <p>{{location.county}}</p>
-        <p>{{location.phone}}</p>
-        <hr>
-        <a href="#">Make Payment</a>
-        <a href="#">Edit</a>
-      </div>
-    </div>
-  </div>
-</article>
+
+<div ng-include="'components/dashboard.payments.html'"></div>
 
 
 

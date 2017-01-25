@@ -1,4 +1,4 @@
-#{$all-buttons} {
+#{$all-buttons}, a.btn, .btn {
   appearance: none;
   background-color: $action-color;
   border: 0;
@@ -38,4 +38,15 @@
     font-size: modular-scale(-1);
   }
 
+  &.btn-xs {
+    padding: $small-spacing*0.33;
+    font-size: modular-scale(-1);
+  }
+
+  &.btn-secondary {
+    background-color: $gray-light;
+    &:hover {
+      background-color: shade($gray-light, 20%);
+    }
+  }
 }

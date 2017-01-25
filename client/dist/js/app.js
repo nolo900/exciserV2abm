@@ -57,24 +57,28 @@ app.service('userService', function ($http) {
                 phone: '404-366-5050',
                 payments: [
                     {
-                        month: 'December',
+                        month: 'Dec',
                         date: '12/06/2016',
-                        amount: 1100.00
+                        taxDue: 1100.00,
+                        totalSales: 1100.00,
                     },
                     {
-                        month: 'January',
+                        month: 'Jan',
                         date: '12/06/2016',
-                        amount: 1300.00
+                        taxDue: 1300.00,
+                        totalSales: 1100.00
                     },
                     {
-                        month: 'February',
+                        month: 'Feb',
                         date: '12/06/2016',
-                        amount: 1900.00
+                        taxDue: 1900.00,
+                        totalSales: 1100.00
                     },
                     {
-                        month: 'March',
+                        month: 'Mar',
                         date: '12/06/2016',
-                        amount: 1200.00
+                        taxDue: 1200.00,
+                        totalSales: 1100.00,
                     },
                 ]
             },
@@ -84,24 +88,30 @@ app.service('userService', function ($http) {
                 phone: '404-366-5050',
                 payments: [
                     {
-                        month: 'December',
+                        month: 'Dec',
                         date: '12/06/2016',
-                        amount: 800.00
+                        taxDue: 800.00,
+                        totalSales: 1100.00,
+
                     },
                     {
-                        month: 'January',
+                        month: 'Feb',
                         date: '12/06/2016',
-                        amount: 300.00
-                    },
-                    {
-                        month: 'February',
-                        date: '12/06/2016',
-                        amount: 500.00
+                        taxDue: 300.00,
+                        totalSales: 1100.00,
+
                     },
                     {
                         month: 'March',
                         date: '12/06/2016',
-                        amount: 600.00
+                        taxDue: 500.00,
+                        totalSales: 1100.00,
+                    },
+                    {
+                        month: 'April',
+                        date: '12/06/2016',
+                        taxDue: 600.00,
+                        totalSales: 1100.00,
                     },
                 ]
             },
@@ -109,73 +119,10 @@ app.service('userService', function ($http) {
                 estName: 'Bobby\'s',
                 county: 'Dekalb',
                 phone: '404-366-5050',
-                payments: []
+                payments: [],
             },
         ],
-        // payments: [
-        //     {
-        //         month: 'December',
-        //         date: '12/06/2016',
-        //         amount: 1500.00
-        //     },
-        //     {
-        //         month: 'January',
-        //         date: '1/06/2016',
-        //         amount: 1700.00
-        //     },
-        //     {
-        //         month: 'February',
-        //         date: '2/06/2016',
-        //         amount: 1900.00
-        //     },
-        //     {
-        //         month: 'March',
-        //         date: '3/06/2016',
-        //         amount: 2100.00
-        //     },
-        //     {
-        //         month: 'April',
-        //         date: '4/06/2016',
-        //         amount: 2500.00
-        //     },
-        //     {
-        //         month: 'May',
-        //         date: '5/06/2016',
-        //         amount: 2600.00
-        //     },
-        //     {
-        //         month: 'June',
-        //         date: '6/06/2016',
-        //         amount: 2200.00
-        //     },
-        //     {
-        //         month: 'July',
-        //         date: '7/06/2016',
-        //         amount: 2100.00
-        //     },
-        //     {
-        //         month: 'August',
-        //         date: '8/06/2016',
-        //         amount: 2100.00
-        //     },
-        //     {
-        //         month: 'September',
-        //         date: '9/06/2016',
-        //         amount: 2200.00
-        //     },
-        //     {
-        //         month: 'October',
-        //         date: '10/06/2016',
-        //         amount: 2000.00
-        //     },
-        //     {
-        //         month: 'November',
-        //         date: '11/06/2016',
-        //         amount: 500.00
-        //     }
-        // ]
     };
-
 });
 
 app.service('formService', function ($http) {
@@ -243,7 +190,7 @@ app.controller('chartCtrl', function (userService) {
         for (let i = 0; i < arr.length; i++) {
             var temp = [];
             for (let ii = 0; ii < arr[i].payments.length; ii++) {
-                temp.push(arr[i].payments[ii].amount);
+                temp.push(arr[i].payments[ii].taxDue);
             }
             vm.data.push(temp);
         }

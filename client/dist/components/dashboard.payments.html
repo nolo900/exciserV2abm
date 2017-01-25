@@ -1,0 +1,44 @@
+<article class="component">
+  <!--<header class="component__header">-->
+    <!--<h1 class="component__title">Locations</h1>-->
+  <!--</header>-->
+  <div ng-repeat="location in ctrl.user.locations" ng-hide="ctrl.user.locations[$index].payments.length === 0">
+    <div class="component__row">
+      <div class="col">
+        <div class="card">
+          <div class="card__body">
+            <h2 class="component__subtitle">{{location.estName}}</h2>
+            <hr class="hr__small">
+            <p>
+              <label for="">Select Month</label>
+              <input type="text" placeholder="Month">
+            </p>
+            <p>
+              <label for="">Total Sales</label>
+              <input type="text" placeholder="Enter your total alochol sales.">
+            </p>
+            <button class="btn">Make Payment</button>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <table>
+          <thead>
+          <tr>
+            <th>Month</th>
+            <th>Sales</th>
+            <th>Taxes</th>
+            <th width="100">View</th>
+          </tr>
+          <tr ng-repeat="payment in location.payments">
+            <td>{{payment.month}}</td>
+            <td>${{payment.totalSales}}</td>
+            <td>${{payment.taxDue}}</td>
+            <td><a href="/" class="btn btn-xs btn-secondary">View PDF</a></td>
+          </tr>
+          </thead>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>
