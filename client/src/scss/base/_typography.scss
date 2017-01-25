@@ -20,6 +20,13 @@ h6 {
   color: $heading-font-color;
 }
 
+h2 {
+  font-size: modular-scale(2);
+  padding-bottom: $base-spacing/4;
+  border-bottom: $base-border;
+  font-weight: 500;
+}
+
 p {
   margin: 0 0 $small-spacing;
 }

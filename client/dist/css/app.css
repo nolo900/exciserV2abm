@@ -208,6 +208,12 @@ h6 {
   font-weight: 400;
   color: #373a3c; }
 
+h2 {
+  font-size: 20.16px;
+  padding-bottom: 0.5625rem;
+  border-bottom: 1px solid #eceeef;
+  font-weight: 500; }
+
 p {
   margin: 0 0 1.125rem; }
 
