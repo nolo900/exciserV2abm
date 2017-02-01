@@ -148,15 +148,14 @@ app.service('formService', function ($http) {
 });
 
 app.service('locationService', function ($http) {
-    console.log('locationService is alive!');
     this.getLocations = function () {
-        return $http.get('/api/locations');
+        return $http.get('http://localhost:3000/api/locations');
     };
     this.getLocation = function (id) {
-        return $http.get('/api/locations', id);
+        return $http.get('http://localhost:3000api/locations', id);
     };
     this.addLocation = function (location) {
-        return $http.post('/api/locations', location);
+        return $http.post('http://localhost:3000/api/locations', location);
     }
 });
 
@@ -169,11 +168,25 @@ app.controller('homeCtrl', function (userService) {
     vm.user = user;
 });
 
-app.controller('dashboardCtrl', function (userService) {
+app.controller('dashboardCtrl', function ($http, userService, locationService) {
     var vm = this;
     vm.title = 'Dashboard';
     vm.user = user;
     vm.navToggle = "";
+
+    vm.data = {};
+
+    vm.locations = locationService.getLocations().then(
+        function (res) {
+            console.log("response:",res.data.locations);
+            // return res.data.locations
+            vm.data = res.data.locations;
+        },
+        function (res) {
+            console.log('error: ', res)
+        }
+    );
+
     vm.toggleNav = function () {
         if (vm.navToggle === "") {
             vm.navToggle = "active";
@@ -181,7 +194,6 @@ app.controller('dashboardCtrl', function (userService) {
             vm.navToggle = "";
         }
     };
-
 
 });
 
@@ -198,14 +210,14 @@ app.controller('chartCtrl', function (userService) {
         chartMax = 0;
 
     function pullSales() {
-        var arr = vm.user.locations;
-        for (let i = 0; i < arr.length; i++) {
-            var temp = [];
-            for (let ii = 0; ii < arr[i].payments.length; ii++) {
-                temp.push(arr[i].payments[ii].taxDue);
-            }
-            vm.data.push(temp);
-        }
+        // var arr = vm.user.locations;
+        // for (let i = 0; i < arr.length; i++) {
+        //     var temp = [];
+        //     for (let ii = 0; ii < arr[i].payments.length; ii++) {
+        //         temp.push(arr[i].payments[ii].taxDue);
+        //     }
+        //     vm.data.push(temp);
+        // }
     }
 
     function chartMinMax() {

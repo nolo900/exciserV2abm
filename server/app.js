@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 var mongoose = require('mongoose');
 var session = require('express-session');
-
+var cors = require('cors');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -16,6 +16,8 @@ var forms = require('./routes/forms');
 
 
 var app = express();
+
+app.use(cors());
 
 /////////////////// Connect to database  /////////////////////////////
 if (process.env.MONGODB_URI) {
