@@ -16,7 +16,6 @@ var forms = require('./routes/forms');
 
 
 var app = express();
-
 app.use(cors());
 
 /////////////////// Connect to database  /////////////////////////////
@@ -77,13 +76,6 @@ app.use('/', index);
 app.use('/api/users/', users);
 app.use('/api/locations', locations);
 app.use('/api/forms',forms);
-
-app.use(function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  next();
-});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
