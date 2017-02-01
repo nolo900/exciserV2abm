@@ -50,6 +50,7 @@ gulp.task('html', function() {
 gulp.task('browser-sync', function() {
     browserSync({
         notify: false,
+        port: 3001,
         server: {
             baseDir: "./dist/",
             injectChanges: true,

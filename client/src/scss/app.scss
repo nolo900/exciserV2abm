@@ -3,9 +3,11 @@
 @import 'breakpoint';
 
 // Base
-@import "base/base";
+@import "variables";
+@import "bootstrap/bootstrap";
 
 // Components
 
+@import "components/homepage";
 @import "components/navbar";
 @import "components/dashboard";

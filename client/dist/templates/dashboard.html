@@ -1,29 +1,9 @@
-<article class="component">
-  <header class="component__header">
-    <h1 class="component__title">Submit a New Payment</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A animi aperiam aut distinctio esse illum, laudantium
-      possimus sed sequi suscipit.</p>
-  </header>
-  <button class="btn">Make Payment</button>
-</article>
-
-<article class="component chart" ng-controller="chartCtrl as ctrl">
-  <div>
-    <canvas id="line"
-            height="60"
-            class="chart chart-line"
-            chart-data="ctrl.data"
-            chart-labels="ctrl.labels"
-            chart-series="ctrl.series"
-            chart-options="ctrl.options"
-            chart-dataset-override="ctrl.datasetOverride"
-            chart-click="ctrl.onClick">
-    </canvas>
-  </div>
-</article>
-
-<div ng-include="'components/dashboard.payments.html'"></div>
-
-
-
-
+<div class="dashboard" ng-controller="dashboardCtrl as ctrl" >
+  <div ng-include="'components/dashboard.sidebar.html'"></div>
+  <section class="dashboard__main" ng-class="ctrl.navToggle">
+    <div ng-include="'components/navbar.html'"></div>
+    <div class="container-fluid">
+      <div class="dashboard__view" ui-view></div>
+    </div>
+  </section>
+</div>

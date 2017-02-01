@@ -2,9 +2,8 @@
   position: relative;
   min-height: 100vh;
   &__view {
-
     &.ng-enter {
-      transition: 300ms;
+      transition: 500ms;
       transform: translateY(2rem);
       opacity: 0;
     }
@@ -25,7 +24,7 @@
       transform: translateX($sidebar-width);
     }
 
-    @include breakpoint($medium-up) {
+    @include media-breakpoint-up(md) {
       max-width: calc(100% - #{$sidebar-width});
       float: right;
       &.active {
@@ -39,11 +38,13 @@
   }
 
   .component {
-    padding: $base-spacing $small-spacing;
-    border-bottom: $base-border;
+    padding: $spacer*2 $spacer;
+
+    hr {
+      margin-top: $spacer*3;
+    }
 
     &__header {
-      //margin-bottom: $base-spacing/2;
       margin-bottom: 0;
       p {
         font-size: modular-scale(1);
@@ -54,51 +55,17 @@
 
     &__title {
       font-size: modular-scale(4);
-      margin-bottom: $small-spacing/2;
+      margin-bottom: $spacer;
       font-weight: 400;
     }
 
     &__subtitle {
       font-size: modular-scale(4);
-      margin: 0 0 $small-spacing;
+      margin: 0 0 $spacer;
       font-weight: 400;
     }
 
-    &__row {
-      margin-top: $base-spacing*0.75;
-      display: flex;
-      flex-wrap: wrap;
-      margin-left: $small-spacing*-0.5;
-      margin-right: $small-spacing*-0.5;
-      .col {
-        flex: 1 1 30rem;
-        margin: 0 $small-spacing/2 $small-spacing;
-        min-width: calc(100% - #{$small-spacing});
-        border-top: solid $action-color 4px;
-        @include breakpoint($small-up) {
-          max-width: calc(100% - #{$small-spacing});
-          min-width: calc(100% - #{$small-spacing});
-        }
-        @include breakpoint($medium-up) {
-          min-width: calc(40% - #{$small-spacing});
-          max-width: calc(40% - #{$small-spacing});
-        }
-      }
-      .col + .col {
-        border-top: 0;
-        flex: 1 1 30rem;
-        margin: 0 $small-spacing/2 0;
-        min-width: calc(100% - #{$small-spacing});
-        max-width: calc(100% - #{$small-spacing});
-        @include breakpoint($medium-up) {
-          min-width: calc(60% - #{$small-spacing});
-          max-width: calc(60% - #{$small-spacing});
-        }
-      }
-    }
-
     &.chart {
-      padding: $base-spacing $small-spacing 0;
       color: #ffffff;
       .component__title {
         color: #ffffff;
@@ -109,52 +76,7 @@
 }
 
 .card {
-  border: $base-border;
-  border-radius: $base-border-radius;
-  h5 {
-    font-size: modular-scale(2);
-    border-bottom: $base-border;
-    margin: 0 0 $small-spacing/2;
-    padding-bottom: $small-spacing/2;
-  }
-  p {
-    margin: 0;
-  }
-  hr {
-    margin: $small-spacing/2 0;
-  }
-  &__body {
-    padding: $small-spacing;
-  }
-  &__footer {
-    background: $brand-primary;
-    padding: $small-spacing/2 $small-spacing;
-    border-bottom-left-radius: $base-border-radius;
-    border-bottom-right-radius: $base-border-radius;
-    a {
-      color: #ffffff;
-    }
-  }
-}
-
-.card-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  margin-left: $small-spacing*-0.5;
-  margin-right: $small-spacing*-0.5;
-  .card {
-    flex: 1 1 auto;
-    margin: 0 $small-spacing/2 $small-spacing;
-    @include breakpoint($small-up) {
-      max-width: calc(50% - #{$small-spacing});
-      min-width: calc(50% - #{$small-spacing});
-    }
-    @include breakpoint($medium-up) {
-      min-width: calc(25% - #{$small-spacing});
-      max-width: calc(25% - #{$small-spacing});
-    }
-  }
+  margin-bottom: $spacer*2;
 }
 
 .sidebar {
@@ -169,11 +91,11 @@
     transform: translateX(0);
   }
 
-  @include breakpoint($small-up) {
+  @include media-breakpoint-up(sm) {
     min-width: 12rem;
   }
 
-  @include breakpoint($medium-up) {
+  @include media-breakpoint-up(md) {
     transform: translateX(0);
   }
 
@@ -181,48 +103,50 @@
     width: $sidebar-width;
   }
   hr {
-    margin: $small-spacing 0;
+    margin: $spacer 0;
     border-color: rgba(white, 0.2);
   }
 
   h5 {
     color: $gray-lighter;
     font-size: modular-scale(0);
-    padding: $small-spacing/2 $small-spacing $small-spacing/2;
+    padding: $spacer/2 $spacer $spacer/2;
     margin: 0;
+  }
+
+  ul {
+    padding: 0;
+    list-style-type: none;
   }
 
   li > a {
     display: block;
-    padding: $base-spacing*0.25 $small-spacing;
+    padding: $spacer*0.25 $spacer;
     color: $gray-light;
-    transition: all $base-duration $base-timing;
     &:hover {
-      margin-left: $small-spacing/8;
+      margin-left: $spacer/8;
       color: #ffffff;
     }
   }
 
   &__avatar {
-    padding: $small-spacing 0 0;
+    padding: $spacer 0 0;
     .image {
-      background: $action-color;
+      background: $brand-primary;
       height: 6rem;
       width: 6rem;
-      margin: $small-spacing/2 auto $small-spacing/1.5;
+      margin: $spacer/2 auto $spacer/1.5;
       border-radius: 100%;
     }
     a {
       display: block;
-      padding: 0 $small-spacing;
+      padding: 0 $spacer;
       text-align: center;
       color: $gray-light;
       justify-content: space-between;
       align-items: center;
       font-size: modular-scale(0);
-      transition: all $base-duration $base-timing;
       span {
-        transition: all $base-duration $base-timing;
         color: $gray-light;
         font-size: modular-scale(-1);
       }
@@ -269,4 +193,8 @@
 
 #user-form {
   max-width: 24rem;
+}
+
+.card-location {
+  border-top: 2px solid $brand-primary;
 }

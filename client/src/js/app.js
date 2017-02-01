@@ -1,23 +1,29 @@
 const app = angular.module('excise', ['ui.router', 'chart.js', 'ngAnimate', 'google.places']);
 
 app.config(function ($urlRouterProvider, $stateProvider) {
-
     $stateProvider
         .state('home', {
             url: '/',
-            templateUrl: 'templates/root.html',
+            templateUrl: 'templates/home.html',
             controller: 'homeCtrl',
             controllerAs: 'ctrl'
         });
     $stateProvider
+        .state('login', {
+            url: '/login',
+            templateUrl: 'templates/login.html',
+            controller: 'loginCtrl',
+            controllerAs: 'ctrl'
+        });
+    $stateProvider
         .state('dashboard', {
-            templateUrl: 'templates/root.html',
+            templateUrl: 'templates/dashboard.html',
             controller: 'dashboardCtrl',
             controllerAs: 'ctrl'
         })
         .state('dashboard.home', {
             url: '/dashboard',
-            templateUrl: 'templates/dashboard.html',
+            templateUrl: 'components/dashboard.home.html',
         })
         .state('dashboard.profile', {
             url: '/profile',
@@ -25,10 +31,9 @@ app.config(function ($urlRouterProvider, $stateProvider) {
         })
         .state('dashboard.logout', {
             url: '/logout',
-            templateUrl: 'templates/profile.html',
+            templateUrl: 'components/dashboard.logout.html',
         });
     $urlRouterProvider.otherwise('/');
-
 });
 
 ////////////////// SERVICES ////////////////////////////////////////////////////////
@@ -47,9 +52,21 @@ app.service('userService', function ($http) {
     //     return $http.post('/api/users/:id', user, user._id);
     // };
 
+    // return user = {
+    //     is_logged_in: false,
+    // };
+
     return user = {
+        is_logged_in: true,
         firstName: 'Jimmy',
         lastName: 'Favor',
+        entityName: 'Favor LLC',
+        entityAddr1: '1234 Main Street',
+        entityAddr2: '#202',
+        entityCity: 'Atlanta',
+        entityState: 'GA',
+        entityZip: '30309',
+        entityFEIN: 'ABCD1234',
         locations: [
             {
                 estName: 'Jimmy\'s',
@@ -148,9 +165,10 @@ app.service('locationService', function ($http) {
 
 ////////////// CONTROLLERS ////////////////////////////////////////////////////////
 
-app.controller('homeCtrl', function () {
+app.controller('homeCtrl', function (userService) {
     var vm = this;
     vm.title = 'Home';
+    vm.user = user;
 });
 
 app.controller('dashboardCtrl', function (userService) {
@@ -165,12 +183,8 @@ app.controller('dashboardCtrl', function (userService) {
             vm.navToggle = "";
         }
     };
-});
 
-app.controller('profileCtrl', function (userService) {
-    var vm = this;
-    vm.title = 'Profile';
-    vm.user = user;
+
 });
 
 app.controller('chartCtrl', function (userService) {
@@ -266,27 +280,27 @@ app.controller('chartCtrl', function (userService) {
 
 app.controller('navCtrl', function (userService) {
     var vm = this;
-    vm.user = {};
+    vm.user = user;
 
-    userService.authUser()
-        .then(function (res) {
-            vm.user = res.data;
-            console.log("from Nav Ctrl: ", vm.user);
-        })
-        .catch(function (err) {
-            console.log("navCtrl userService error: ", err);
-        })
+    // userService.authUser()
+    //     .then(function (res) {
+    //         vm.user = res.data;
+    //         console.log("from Nav Ctrl: ", vm.user);
+    //     })
+    //     .catch(function (err) {
+    //         console.log("navCtrl userService error: ", err);
+    //     })
+
+
 });
 
 app.controller('loginCtrl', function ($http, $location) {
-    console.log('login is here');
     var vm = this;
     vm.title = 'Login';
 
     vm.login = function () {
         var url = 'http://localhost:3000/login';
         var user = vm.user;
-
         $http.post(url, user)
             .then(
                 function (res) {
@@ -298,14 +312,12 @@ app.controller('loginCtrl', function ($http, $location) {
                     $location.path('/');
                 }
             )
-
     }
 });
 
 app.controller('signupCtrl', function ($http, $location) {
     var vm = this;
     vm.title = 'Sign Up';
-
 
     vm.signup = function () {
         var url = 'http://localhost:3000/signup';
@@ -328,18 +340,7 @@ app.controller('signupCtrl', function ($http, $location) {
 app.controller('profileCtrl', function (userService) {
     var vm = this;
     vm.title = 'Profile';
-    console.log('Profile is here');
-
-    vm.user = {};
-
-    userService.authUser()
-        .then(function (res) {
-            vm.user = res.data;
-            //console.log(vm.user);
-        })
-        .catch(function (err) {
-            console.log("profileCtrl userService error: ", err);
-        });
+    vm.user = user;
 
     vm.updateUser = function () {
         userService.updateUser(vm.user)
