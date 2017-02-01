@@ -52,94 +52,92 @@ app.service('userService', function ($http) {
     //     return $http.post('/api/users/:id', user, user._id);
     // };
 
+    return user = null;
+
     // return user = {
-    //     is_logged_in: false,
+    //     is_logged_in: true,
+    //     firstName: 'Jimmy',
+    //     lastName: 'Favor',
+    //     entityName: 'Favor LLC',
+    //     entityAddr1: '1234 Main Street',
+    //     entityAddr2: '#202',
+    //     entityCity: 'Atlanta',
+    //     entityState: 'GA',
+    //     entityZip: '30309',
+    //     entityFEIN: 'ABCD1234',
+    //     locations: [
+    //         {
+    //             estName: 'Jimmy\'s',
+    //             county: 'Fulton',
+    //             phone: '404-366-5050',
+    //             payments: [
+    //                 {
+    //                     month: 'Dec',
+    //                     date: '12/06/2016',
+    //                     taxDue: 1100.00,
+    //                     totalSales: 1100.00,
+    //                 },
+    //                 {
+    //                     month: 'Jan',
+    //                     date: '12/06/2016',
+    //                     taxDue: 1300.00,
+    //                     totalSales: 1100.00
+    //                 },
+    //                 {
+    //                     month: 'Feb',
+    //                     date: '12/06/2016',
+    //                     taxDue: 1900.00,
+    //                     totalSales: 1100.00
+    //                 },
+    //                 {
+    //                     month: 'Mar',
+    //                     date: '12/06/2016',
+    //                     taxDue: 1200.00,
+    //                     totalSales: 1100.00,
+    //                 },
+    //             ]
+    //         },
+    //         {
+    //             estName: 'Jack\'s',
+    //             county: 'Dekalb',
+    //             phone: '404-366-5050',
+    //             payments: [
+    //                 {
+    //                     month: 'Dec',
+    //                     date: '12/06/2016',
+    //                     taxDue: 800.00,
+    //                     totalSales: 1100.00,
+    //
+    //                 },
+    //                 {
+    //                     month: 'Feb',
+    //                     date: '12/06/2016',
+    //                     taxDue: 300.00,
+    //                     totalSales: 1100.00,
+    //
+    //                 },
+    //                 {
+    //                     month: 'March',
+    //                     date: '12/06/2016',
+    //                     taxDue: 500.00,
+    //                     totalSales: 1100.00,
+    //                 },
+    //                 {
+    //                     month: 'April',
+    //                     date: '12/06/2016',
+    //                     taxDue: 600.00,
+    //                     totalSales: 1100.00,
+    //                 },
+    //             ]
+    //         },
+    //         {
+    //             estName: 'Bobby\'s',
+    //             county: 'Dekalb',
+    //             phone: '404-366-5050',
+    //             payments: [],
+    //         },
+    //     ],
     // };
-
-    return user = {
-        is_logged_in: true,
-        firstName: 'Jimmy',
-        lastName: 'Favor',
-        entityName: 'Favor LLC',
-        entityAddr1: '1234 Main Street',
-        entityAddr2: '#202',
-        entityCity: 'Atlanta',
-        entityState: 'GA',
-        entityZip: '30309',
-        entityFEIN: 'ABCD1234',
-        locations: [
-            {
-                estName: 'Jimmy\'s',
-                county: 'Fulton',
-                phone: '404-366-5050',
-                payments: [
-                    {
-                        month: 'Dec',
-                        date: '12/06/2016',
-                        taxDue: 1100.00,
-                        totalSales: 1100.00,
-                    },
-                    {
-                        month: 'Jan',
-                        date: '12/06/2016',
-                        taxDue: 1300.00,
-                        totalSales: 1100.00
-                    },
-                    {
-                        month: 'Feb',
-                        date: '12/06/2016',
-                        taxDue: 1900.00,
-                        totalSales: 1100.00
-                    },
-                    {
-                        month: 'Mar',
-                        date: '12/06/2016',
-                        taxDue: 1200.00,
-                        totalSales: 1100.00,
-                    },
-                ]
-            },
-            {
-                estName: 'Jack\'s',
-                county: 'Dekalb',
-                phone: '404-366-5050',
-                payments: [
-                    {
-                        month: 'Dec',
-                        date: '12/06/2016',
-                        taxDue: 800.00,
-                        totalSales: 1100.00,
-
-                    },
-                    {
-                        month: 'Feb',
-                        date: '12/06/2016',
-                        taxDue: 300.00,
-                        totalSales: 1100.00,
-
-                    },
-                    {
-                        month: 'March',
-                        date: '12/06/2016',
-                        taxDue: 500.00,
-                        totalSales: 1100.00,
-                    },
-                    {
-                        month: 'April',
-                        date: '12/06/2016',
-                        taxDue: 600.00,
-                        totalSales: 1100.00,
-                    },
-                ]
-            },
-            {
-                estName: 'Bobby\'s',
-                county: 'Dekalb',
-                phone: '404-366-5050',
-                payments: [],
-            },
-        ],
-    };
 });
 
 app.service('formService', function ($http) {
