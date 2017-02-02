@@ -337,20 +337,21 @@ app.controller('signupCtrl', function ($http, $location) {
     vm.title = 'Sign Up';
 
     vm.signup = function () {
-        var url = 'http://localhost:3000/signup';
-        var user = vm.user;
-
-        $http.post(url, user)
-            .then(
-                function (res) {
-                    console.log("success!!");
-                    $location.path("/profile")
-                }, //success
-                function (res) {
-                    console.log('error!');
-                    $location.path('/login');
-                } //error
-            )
+        console.log('form button clicked');
+        // var url = 'http://localhost:3000/signup';
+        // var user = vm.user;
+        //
+        // $http.post(url, user)
+        //     .then(
+        //         function (res) {
+        //             console.log("success!!");
+        //             $location.path("/profile")
+        //         }, //success
+        //         function (res) {
+        //             console.log('error!');
+        //             $location.path('/login');
+        //         } //error
+        //     )
     };
 });
 

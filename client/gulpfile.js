@@ -4,7 +4,6 @@ var gulp            = require('gulp'),
     sass            = require('gulp-sass'),
     prefixer        = require('gulp-autoprefixer'),
     rename          = require('gulp-rename'),
-    browserSync     = require('browser-sync'),
     changed         = require('gulp-changed'),
     minimizer       = require('gulp-imagemin'),
     size            = require('gulp-size'),
@@ -22,8 +21,7 @@ gulp.task('styles', function() {
                 quiet: true
             }).on('error', sass.logError))
         .pipe(prefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
-        .pipe(gulp.dest('../server/public/css'))
-        .pipe(browserSync.reload({ stream: true }));
+        .pipe(gulp.dest('../server/public/css'));
 });
 
 gulp.task('scripts', function() {
@@ -46,31 +44,21 @@ gulp.task('html', function() {
         .pipe(gulp.dest('../server/public/'))
 });
 
-gulp.task('browser-sync', function() {
-    browserSync({
-        notify: false,
-        port: 3000,
-        server: {
-            baseDir: "./../server/public/",
-            injectChanges: true,
-            browser: "Google Chrome"
-        }
-    });
-});
+
 
 gulp.task('clean', function () {
     return del([
-        '../server/public/**/*'
+        './server/public/**/*'
     ], {force: true});
 });
 
 gulp.task('watch', function() {
-    gulp.watch('src/js/**/*.js', ['scripts', browserSync.reload]);
-    gulp.watch('src/**/*.html', ['html', browserSync.reload]);
-    gulp.watch('src/scss/**/*.scss', ['styles', browserSync.reload]);
-    gulp.watch('src/images/**/*', ['images', browserSync.reload]);
+    gulp.watch('src/js/**/*.js', ['scripts']);
+    gulp.watch('src/**/*.html', ['html']);
+    gulp.watch('src/scss/**/*.scss', ['styles']);
+    gulp.watch('src/images/**/*', ['images']);
 });
 
 gulp.task('default', function() {
-    gulp.start( 'clean', 'styles', 'scripts', 'images', 'html', 'watch', 'browser-sync');
+    gulp.start( 'clean', 'styles', 'scripts', 'images', 'html', 'watch');
 });
