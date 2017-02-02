@@ -51,7 +51,7 @@ app.use(require('node-sass-middleware')({
   indentedSyntax: true,
   sourceMap: true
 }));
-app.use(express.static(path.join(__dirname, '../client')));
+app.use(express.static(path.join(__dirname, './public')));
 
 
 ///////////////// PASSPORT //////////////////////
