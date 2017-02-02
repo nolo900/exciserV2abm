@@ -4,7 +4,7 @@ var Location = require('../models/locationModel');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-	Location.find({userID: req.user._id}).populate["Locations"]
+	Location.find({userID: req.user._id})
 		.then(function (foundLocations) {
 			console.log(foundLocations);
 			res.jsonp({locations: foundLocations});
