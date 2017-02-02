@@ -194,7 +194,6 @@ app.controller('dashboardCtrl', function ($http, userService, locationService) {
     vm.locations = locationService.getLocations()
         .then(function (res) {
             console.log("LocationService: Locations:",res.data.locations);
-            // return res.data.locations
             vm.locations = res.data.locations;
         },
         function (res) {
