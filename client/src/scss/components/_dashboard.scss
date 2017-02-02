@@ -123,6 +123,7 @@
     display: block;
     padding: $spacer*0.25 $spacer;
     color: $gray-light;
+    cursor: pointer;
     &:hover {
       margin-left: $spacer/8;
       color: #ffffff;

@@ -1,13 +1,54 @@
-<div ng-include="'components/navbar.html'"></div>
+<!--<div ng-include="'components/navbar.html'"></div>-->
+<div ng-controller="signupCtrl as ctrl">
+  <form name="form" ng-submit="ctrl.signup()" role="form" >
+
+    <section class="sign-up__page">
+      <div class="container">
+        <h1>Locations</h1>
+        <input type="submit" class="btn btn-primary" value="Sign Up">
+      </div>
+    </section>
+
+    <section class="sign-up__page">
+      <div class="container">
+        <h1>Filing As</h1>
+      </div>
+    </section>
+
+    <section class="sign-up__page">
+      <div class="container">
+        <h1>Contact Info</h1>
+      </div>
+    </section>
+
+    <section class="sign-up__page">
+      <div class="container">
+        <h1>Confirm</h1>
+
+        <hr>
+      </div>
+    </section>
 
 
+  </form>
+</div>
 
-<div class="container">
+
+<div class="container d-none">
   <div class="row">
-    <div class="col-md-6  offset-md-3">
+    <div class="col-md-6 offset-md-3">
+
+      <ol class="breadcrumb mt-1">
+        <li class="breadcrumb-item"><a href="#">Location</a></li>
+        <li class="breadcrumb-item"><a href="#">Filing As</a></li>
+        <li class="breadcrumb-item"><a href="#">Contact</a></li>
+        <li class="breadcrumb-item active">Confirm</li>
+      </ol>
+
+      <h1 class="mt-3 mb-1">Getting Started</h1>
 
 
-      <h5 class="mt-3 mb-1">Add a Location</h5>
+      <h5 class="mb-1">Add a Location</h5>
 
       <div class="form-group">
         <input placeholder="Enter your business name."
@@ -17,61 +58,210 @@
                ng-value="place.name"/>
       </div>
       <div class="form-group">
-        <button class="btn btn-block btn-primary" data-toggle="modal" data-target=".new-location-modal">Add Location</button>
+        <button class="btn btn-block btn-primary"
+                data-toggle="modal"
+                data-target=".new-location-modal">Add Location
+        </button>
       </div>
 
-      <div class="modal fade new-location-modal">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">New Location</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+
+      <form name="form" ng-submit="$ctrl.signup()" role="form">
+        <h1>{{ $ctrl.title }}</h1>
+        <hr/>
+        <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
+          <label for="email">Email</label>
+          <input type="text" name="signup_email" id="email" class="form-control" ng-model="$ctrl.user.signup_email"
+                 required/>
+          <span ng-show="form.username.$dirty && form.username.$error.required"
+                class="help-block">Username is required</span>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
+          <label for="password">Password</label>
+          <input type="password" name="signup_password" id="password" class="form-control"
+                 ng-model="$ctrl.user.signup_password" required/>
+          <span ng-show="form.password.$dirty && form.password.$error.required"
+                class="help-block">Password is required</span>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
+          <label for="password2">Confirm Password</label>
+          <input type="password" name="password2" id="password2" class="form-control" ng-model="$ctrl.password2"
+                 required/>
+          <span ng-show="form.password.$dirty && form.password.$error.required"
+                class="help-block">Password is required</span>
+        </div>
+        <div class="form-actions">
+          <button type="submit" ng-disabled="form.$invalid || $ctrl.dataLoading" class="btn btn-primary">Signup</button>
+          <hr>
+          <div class="text-muted">Already have an account?</div>
+          <a ui-sref="login">Login Here</a>
+        </div>
+      </form>
+      <form id="user-form" class="profile__form" ng-submit="ctrl.updateUser()">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="profileFirstName">First Name</label>
+              <input type="text" id="profileFirstName" class="form-control" placeholder="First Name"
+                     ng-model="ctrl.user.firstName">
             </div>
-
-            <div class="modal-body">
-              <div class="form-group">
-                <label for="">Busines Name</label>
-                <input class="form-control" placeholder="Business Name" value="{{ place.name }}">
-              </div>
-
-              <div class="form-group">
-                <label for="">Busines Address</label>
-                <input class="form-control" placeholder="Business Address"
-                       value="{{place.formatted_address}}">
-              </div>
-
-              <div class="form-group">
-                <label for="">County</label>
-                <div ng-repeat="field in place.address_components | filter:{types: 'administrative_area_level_2'}">
-                  <input class="form-control" placeholder="County" value="{{field.long_name}}">
-                </div>
-              </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="profileLastName">Last Name</label>
+              <input type="text" id="profileLastName" class="form-control" placeholder="Last Name"
+                     ng-model="ctrl.user.lastName">
             </div>
-
-            <div class="modal-footer">
-              <button type="submit"
-                      class="btn btn-primary"
-                      data-dismiss="modal" ng-click="submitNewLocation()">Save</button>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-
           </div>
         </div>
-      </div>
 
+        <div class="form-group">
+          <label for="profileEmail">Email Address</label>
+          <input type="email" id="profileEmail" class="form-control" placeholder="Email Address"
+                 ng-model="ctrl.user.local.email">
+        </div>
 
-      <!--<form role="form" class="form pt-sm-3">-->
-        <!--<div class="form-group">-->
-          <!--<input placeholder="Enter your business name."-->
-                 <!--class="form-control"-->
-                 <!--g-places-autocomplete-->
-                 <!--ng-model="place"-->
-                 <!--ng-value="place.name"/>-->
-        <!--</div>-->
-        <!--<button class="btn btn-primary">Get Started</button>-->
-      <!--</form>-->
+        <h5 class="mt-3 mb-1">Filing As</h5>
+
+        <div class="form-group">
+          <label for="entityName">Entity Name</label>
+          <input type="text" id="entityName" class="form-control" placeholder="Example, LLC"
+                 ng-model="ctrl.user.entityName">
+        </div>
+
+        <div class="form-group">
+          <label for="entityAddr1">Entity Address</label>
+          <input type="text" id="entityAddr1" class="form-control" placeholder="Address 1"
+                 ng-model="ctrl.user.entityAddr1">
+        </div>
+
+        <div class="form-group">
+          <input type="text" id="entityAddr2" class="form-control"
+                 placeholder="Address 2" ng-model="ctrl.user.entityAddr2">
+        </div>
+
+        <div class="form-group">
+          <label for="entityCity">Entity City</label>
+          <input type="text" id="entityCity" class="form-control" placeholder="Athens" ng-model="ctrl.user.entityCity">
+        </div>
+
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label>State</label>
+              <select class="custom-select" ng-model="ctrl.user.entityState">
+                <option value="AL">Alabama</option>
+                <option value="AK">Alaska</option>
+                <option value="AZ">Arizona</option>
+                <option value="AR">Arkansas</option>
+                <option value="CA">California</option>
+                <option value="CO">Colorado</option>
+                <option value="CT">Connecticut</option>
+                <option value="DE">Delaware</option>
+                <option value="DC">District Of Columbia</option>
+                <option value="FL">Florida</option>
+                <option value="GA">Georgia</option>
+                <option value="HI">Hawaii</option>
+                <option value="ID">Idaho</option>
+                <option value="IL">Illinois</option>
+                <option value="IN">Indiana</option>
+                <option value="IA">Iowa</option>
+                <option value="KS">Kansas</option>
+                <option value="KY">Kentucky</option>
+                <option value="LA">Louisiana</option>
+                <option value="ME">Maine</option>
+                <option value="MD">Maryland</option>
+                <option value="MA">Massachusetts</option>
+                <option value="MI">Michigan</option>
+                <option value="MN">Minnesota</option>
+                <option value="MS">Mississippi</option>
+                <option value="MO">Missouri</option>
+                <option value="MT">Montana</option>
+                <option value="NE">Nebraska</option>
+                <option value="NV">Nevada</option>
+                <option value="NH">New Hampshire</option>
+                <option value="NJ">New Jersey</option>
+                <option value="NM">New Mexico</option>
+                <option value="NY">New York</option>
+                <option value="NC">North Carolina</option>
+                <option value="ND">North Dakota</option>
+                <option value="OH">Ohio</option>
+                <option value="OK">Oklahoma</option>
+                <option value="OR">Oregon</option>
+                <option value="PA">Pennsylvania</option>
+                <option value="RI">Rhode Island</option>
+                <option value="SC">South Carolina</option>
+                <option value="SD">South Dakota</option>
+                <option value="TN">Tennessee</option>
+                <option value="TX">Texas</option>
+                <option value="UT">Utah</option>
+                <option value="VT">Vermont</option>
+                <option value="VA">Virginia</option>
+                <option value="WA">Washington</option>
+                <option value="WV">West Virginia</option>
+                <option value="WI">Wisconsin</option>
+                <option value="WY">Wyoming</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="entityZip">Zip Code</label>
+              <input type="text" id="entityZip" class="form-control" placeholder="Zip" ng-model="ctrl.user.entityZip">
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="entityEin">EIN</label>
+          <input type="text" id="entityEin" class="form-control" ng-model="ctrl.user.entityFEIN">
+        </div>
+        <div class="form-group">
+          <input type="submit" id="user-form-submit" class="btn btn-block btn-primary" value="Save">
+        </div>
+        <hr>
+      </form>
     </div>
+
+    <div class="modal fade new-location-modal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">New Location</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="">Busines Name</label>
+              <input class="form-control" placeholder="Business Name" value="{{ place.name }}">
+            </div>
+
+            <div class="form-group">
+              <label for="">Busines Address</label>
+              <input class="form-control" placeholder="Business Address"
+                     value="{{place.formatted_address}}">
+            </div>
+
+            <div class="form-group">
+              <label for="">County</label>
+              <div ng-repeat="field in place.address_components | filter:{types: 'administrative_area_level_2'}">
+                <input class="form-control" placeholder="County" value="{{field.long_name}}">
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="submit"
+                    class="btn btn-primary"
+                    data-dismiss="modal" ng-click="submitNewLocation()">Save
+            </button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>

@@ -18,9 +18,49 @@
     <hr>
     <h5>Actions</h5>
     <ul>
-      <li><a ui-sref="dashboard.home">Add a Location</a></li>
+      <li><a data-toggle="modal" data-target=".new-location-modal">Add a Location</a></li>
       <li><a ui-sref="dashboard.profile" href="">Edit Profile</a></li>
       <li><a ui-sref="dashboard.logout">Logout</a></li>
     </ul>
   </div>
 </aside>
+
+<div class="modal fade new-location-modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">New Location</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="">Busines Name</label>
+          <input class="form-control" placeholder="Business Name" value="{{ place.name }}">
+        </div>
+
+        <div class="form-group">
+          <label for="">Busines Address</label>
+          <input class="form-control" placeholder="Business Address"
+                 value="{{place.formatted_address}}">
+        </div>
+
+        <div class="form-group">
+          <label for="">County</label>
+          <div ng-repeat="field in place.address_components | filter:{types: 'administrative_area_level_2'}">
+            <input class="form-control" placeholder="County" value="{{field.long_name}}">
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="submit"
+                class="btn btn-primary"
+                data-dismiss="modal" ng-click="submitNewLocation()">Save</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
