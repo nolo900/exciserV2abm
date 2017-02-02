@@ -188,14 +188,14 @@ app.controller('dashboardCtrl', function ($http, userService, locationService) {
     vm.title = 'Dashboard';
     vm.user = {};
     vm.navToggle = "";
-
+    vm.locations ={};
     vm.data = {};
 
     vm.locations = locationService.getLocations()
         .then(function (res) {
             console.log("LocationService: Locations:",res.data.locations);
             // return res.data.locations
-            vm.data = res.data.locations;
+            vm.locations = res.data.locations;
         },
         function (res) {
             console.log('error: ', res)
