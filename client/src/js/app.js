@@ -16,6 +16,13 @@ app.config(function ($urlRouterProvider, $stateProvider) {
             controllerAs: 'ctrl'
         });
     $stateProvider
+        .state('signup', {
+            url: '/go',
+            templateUrl: 'templates/signup.html',
+            controller: 'signupCtrl',
+            controllerAs: 'ctrl'
+        });
+    $stateProvider
         .state('dashboard', {
             templateUrl: 'templates/dashboard.html',
             controller: 'dashboardCtrl',
