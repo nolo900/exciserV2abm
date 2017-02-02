@@ -46,20 +46,20 @@ app.config(function ($urlRouterProvider, $stateProvider) {
 ////////////////// SERVICES ////////////////////////////////////////////////////////
 app.service('userService', function ($http) {
     console.log('userService is alive!');
-    // this.authUser = function () {
-    //     return $http.get("/api/users");
-    // };
+    this.authUser = function () {
+        return $http.get("http://localhost:3000/api/users");
+    };
     // this.getUsers = function () {
     //     return $http.get('/api/users');
     // };
     // this.getUser = function () {
     //     return $http.get('/api/users', id);
     // };
-    // this.updateUser = function (user) {
-    //     return $http.post('/api/users/:id', user, user._id);
-    // };
+    this.updateUser = function (user) {
+        return $http.post('/api/users/:id', user, user._id);
+    };
 
-    return user = null;
+    // return user = null;
 
     // return user = {
     //     is_logged_in: true,
@@ -178,14 +178,14 @@ app.controller('homeCtrl', function (userService) {
 app.controller('dashboardCtrl', function ($http, userService, locationService) {
     var vm = this;
     vm.title = 'Dashboard';
-    vm.user = user;
+    vm.user = {};
     vm.navToggle = "";
 
     vm.data = {};
 
-    vm.locations = locationService.getLocations().then(
-        function (res) {
-            console.log("response:",res.data.locations);
+    vm.locations = locationService.getLocations()
+        .then(function (res) {
+            console.log("LocationService: Locations:",res.data.locations);
             // return res.data.locations
             vm.data = res.data.locations;
         },
@@ -193,6 +193,15 @@ app.controller('dashboardCtrl', function ($http, userService, locationService) {
             console.log('error: ', res)
         }
     );
+
+	vm.getUser = userService.authUser()
+        .then(function (user) {
+            console.log("USER from DashCtrl: ", user.data);
+            vm.user = user.data;
+        })
+        .catch(function (err) {
+            console.log("Dash Ctrl:User Service ERROR: ", err);
+        });
 
     vm.toggleNav = function () {
         if (vm.navToggle === "") {
@@ -206,7 +215,16 @@ app.controller('dashboardCtrl', function ($http, userService, locationService) {
 
 app.controller('chartCtrl', function (userService) {
     var vm = this;
-    vm.user = user;
+	vm.user = {};
+
+	vm.getUser = userService.authUser()
+		.then(function (user) {
+			console.log("USER from ChartCtrl: ", user.data);
+			vm.user = user.data;
+		})
+		.catch(function (err) {
+			console.log("Chart Ctrl:User Service ERROR: ", err);
+		});
 
     vm.labels = ['Jan', 'Feb', 'March', 'April'];
     vm.data = [];
@@ -297,39 +315,40 @@ app.controller('chartCtrl', function (userService) {
 
 app.controller('navCtrl', function (userService) {
     var vm = this;
-    vm.user = user;
+    vm.user = {};
 
-    // userService.authUser()
-    //     .then(function (res) {
-    //         vm.user = res.data;
-    //         console.log("from Nav Ctrl: ", vm.user);
-    //     })
-    //     .catch(function (err) {
-    //         console.log("navCtrl userService error: ", err);
-    //     })
+	vm.getUser = userService.authUser()
+		.then(function (user) {
+			console.log("USER from NavCtrl: ", user.data);
+			vm.user = user.data;
+		})
+		.catch(function (err) {
+			console.log("Nav Ctrl:User Service ERROR: ", err);
+		});
 
 
 });
 
-app.controller('loginCtrl', function ($http, $location) {
+app.controller('loginCtrl', function ($http, $location, userService) {
     var vm = this;
     vm.title = 'Login';
 
     vm.login = function () {
-        var url = 'http://localhost:3000/login';
+        var url = '/login';
         var user = vm.user;
         $http.post(url, user)
             .then(
                 function (res) {
-                    console.log("success!");
+                    console.log("login success!");
                     $location.path('/profile');
                 },
                 function (res) {
-                    console.log("failure");
+                    console.log("login failure");
                     $location.path('/');
                 }
             )
     }
+
 });
 
 app.controller('signupCtrl', function ($http, $location) {
@@ -337,17 +356,17 @@ app.controller('signupCtrl', function ($http, $location) {
     vm.title = 'Sign Up';
 
     vm.signup = function () {
-        var url = 'http://localhost:3000/signup';
+        var url = '/signup';
         var user = vm.user;
 
         $http.post(url, user)
             .then(
                 function (res) {
-                    console.log("success!!");
+                    console.log("signup success!!");
                     $location.path("/profile")
                 }, //success
                 function (res) {
-                    console.log('error!');
+                    console.log('signup error!');
                     $location.path('/login');
                 } //error
             )
@@ -357,17 +376,26 @@ app.controller('signupCtrl', function ($http, $location) {
 app.controller('profileCtrl', function (userService) {
     var vm = this;
     vm.title = 'Profile';
-    vm.user = user;
+    vm.user = {};
+
+	vm.getUser = userService.authUser()
+		.then(function (user) {
+			console.log("USER from ProfileCtrl: ", user.data);
+			vm.user = user.data;
+		})
+		.catch(function (err) {
+			console.log("Profile Ctrl:User Service ERROR: ", err);
+		});
 
     vm.updateUser = function () {
-        userService.updateUser(vm.user)
-            .then(function (res) {
-                console.log("User Updated", res)
-            })
-            .catch(function (err) {
-                alert('Error: ' + err);
-            })
-    }
+	    userService.updateUser(vm.user)
+		    .then(function (res) {
+			    console.log("User Updated", res)
+		    })
+		    .catch(function (err) {
+			    alert('Error: ' + err);
+		    })
+    };
 
 });
 
