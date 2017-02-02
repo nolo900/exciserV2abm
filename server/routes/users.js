@@ -39,7 +39,8 @@ router.delete('/:id', authenticateAPI, function (req, res, next) {
 module.exports = router;
 function authenticateAPI(req, res, next) {
   if(!req.isAuthenticated()) {
-    res.redirect(401, '/');
+    // res.redirect(401, '/');
+      res.json(null);
   }
   else {
     next();

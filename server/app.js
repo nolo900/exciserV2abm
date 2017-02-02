@@ -66,10 +66,10 @@ passportConfigFunction(passport);
 
 
 // // This middleware will allow us to use the currentUser in our views and routes.
-// app.use(function (req, res, next) {
-//   global.currentUser = req.user;
-//   next();
-// });
+app.use(function (req, res, next) {
+  global.currentUser = req.user;
+  next();
+});
 ////////////////////////////////////////////////
 
 app.use('/', index);

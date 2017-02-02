@@ -1,5 +1,6 @@
 <article class="component">
-  <div ng-repeat="location in ctrl.user.locations" ng-hide="ctrl.user.locations[$index].payments.length === 0">
+  <div ng-repeat="location in ctrl.locations">
+    <p>Location: {{location}}</p>
     <div class="row">
       <div class="col-md-6">
         <div class="card card-location">
@@ -17,6 +18,8 @@
           </div>
         </div>
       </div>
+      
+      
       <div class="col-md-6">
         <table class="table table-striped">
           <thead>
