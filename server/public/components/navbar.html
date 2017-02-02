@@ -3,12 +3,12 @@
         <a class="navbar__trigger" ng-click="ctrl.toggleNav()"><i class="fa fa-bars"></i></a>
         <a ui-sref="home" class="navbar__brand">Exciser</a>
     </div>
-    <div class="navbar__nav" ng-if="ctrl.user">
+    <div class="navbar__nav" ng-show="ctrl.user">
         <a ui-sref="dashboard.home" ui-sref-active="active">Dashboard</a>
         <a ui-sref="dashboard.profile" ui-sref-active="active">Profile</a>
         <a href="#" ng-click="ctrl.logOut()">Logout</a>
     </div>
-    <div class="navbar__nav" ng-if="!ctrl.user">
+    <div class="navbar__nav" ng-show="!ctrl.user">
         <a ui-sref="login" ui-sref-active="active">Login</a>
         <a ui-sref="signup" ui-sref-active="active">Get Started</a>
     </div>
