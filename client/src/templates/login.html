@@ -1,0 +1,39 @@
+<div ng-include="'components/navbar.html'"></div>
+<div class="container" ng-controller="loginCtrl as ctrl">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <h1 class="mt-sm-3">{{ ctrl.title }}</h1>
+      <hr>
+      <form name="form" ng-submit="ctrl.login()" role="form">
+        <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
+          <label for="email">Email</label>
+          <input type="text"
+                 name="email"
+                 placeholder="Email Address"
+                 id="email"
+                 class="form-control"
+                 ng-model="ctrl.user.login_email"
+                 required />
+          <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Username is required</span>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
+          <label for="password">Password</label>
+          <input type="password"
+                 name="password"
+                 placeholder="Password"
+                 id="password"
+                 class="form-control"
+                 ng-model="ctrl.user.login_password"
+                 required />
+          <div ng-show="form.password.$dirty && form.password.$error.required" class="text-muted">Password is required</div>
+        </div>
+        <div class="form-actions">
+          <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary">Login</button>
+          <hr>
+          <div class="text-muted">Don't have an account?</div>
+          <a ui-sref="signup">Sign Up</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

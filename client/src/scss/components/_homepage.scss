@@ -32,11 +32,10 @@
     }
   }
   &__cta-well {
-    padding: $spacer*2 0 $spacer*5;
+    padding: $spacer*5 0 $spacer*6;
     .form-inline {
       display: flex;
       margin-top: $spacer*2;
-
       .form-control {
         flex: 1 1 auto;
       }

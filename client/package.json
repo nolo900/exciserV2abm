@@ -1,0 +1,29 @@
+{
+  "name": "exciser-client",
+  "version": "1.0.0",
+  "description": "Front-end for exciser.",
+  "main": "gulpfile.js",
+  "scripts": {
+    "start": "gulp",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Brendan Pete, Austin Miles",
+  "license": "ISC",
+  "devDependencies": {
+    "bourbon": "^4.2.7",
+    "bourbon-neat": "^1.8.0",
+    "breakpoint-sass": "^2.7.0",
+    "browser-sync": "^2.16.0",
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^2.3.0",
+    "gulp-changed": "^1.2.1",
+    "gulp-imagemin": "^2.2.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.0.1",
+    "gulp-size": "^1.2.1",
+    "gulp-util": "^3.0.7",
+    "webpack": "^1.13.2",
+    "webpack-stream": "^3.2.0"
+  }
+}

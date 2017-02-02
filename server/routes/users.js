@@ -10,7 +10,6 @@ router.get('/', authenticateAPI, function(req, res, next) {
 
 //update
 router.post('/:id', authenticateAPI, function (req, res, next) {
-
   User.findByIdAndUpdate({_id: req.user._id}, req.body)
       .then(function(savedUser) {
         console.log("updating user: ", savedUser);
@@ -38,7 +37,6 @@ router.delete('/:id', authenticateAPI, function (req, res, next) {
 })
 
 module.exports = router;
-
 function authenticateAPI(req, res, next) {
   if(!req.isAuthenticated()) {
     res.redirect(401, '/');

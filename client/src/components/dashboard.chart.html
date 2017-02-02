@@ -1,0 +1,14 @@
+<article class="component chart" ng-controller="chartCtrl as ctrl">
+  <div>
+    <canvas id="line"
+            height="60"
+            class="chart chart-line"
+            chart-data="ctrl.data"
+            chart-labels="ctrl.labels"
+            chart-series="ctrl.series"
+            chart-options="ctrl.options"
+            chart-dataset-override="ctrl.datasetOverride"
+            chart-click="ctrl.onClick">
+    </canvas>
+  </div>
+</article>
