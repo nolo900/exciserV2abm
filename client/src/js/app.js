@@ -49,12 +49,7 @@ app.service('userService', function ($http) {
     this.authUser = function () {
         return $http.get("http://localhost:3000/api/users");
     };
-    // this.getUsers = function () {
-    //     return $http.get('/api/users');
-    // };
-    // this.getUser = function () {
-    //     return $http.get('/api/users', id);
-    // };
+
     this.updateUser = function (user) {
         return $http.post('/api/users/:id', user, user._id);
     };
@@ -147,8 +142,8 @@ app.service('userService', function ($http) {
 
 app.service('formService', function ($http) {
     console.log('formService is alive');
-    this.saveForm = function () {
-        return $http.post('/api/forms/:id', form, form._id);
+    this.makeForm = function (location, payment) {
+        return $http.post('/api/locations/makepdf', location,payment);
     }
 });
 
@@ -168,8 +163,6 @@ app.service('locationService', function ($http) {
     }
 });
 
-// delete this comment
-// new comment to delete
 ////////////// CONTROLLERS ////////////////////////////////////////////////////////
 
 app.controller('homeCtrl', function (userService) {
@@ -187,7 +180,7 @@ app.controller('homeCtrl', function (userService) {
 		});
 });
 
-app.controller('dashboardCtrl', function ($http, userService, locationService) {
+app.controller('dashboardCtrl', function ($http, userService, locationService, formService) {
     var vm = this;
     vm.title = 'Dashboard';
     vm.user = {};
@@ -240,6 +233,18 @@ app.controller('dashboardCtrl', function ($http, userService, locationService) {
 			});
 
 		vm.payment = {reportMonth:'', grossSales: ''};
+
+	};
+
+	vm.makePDF = function (location, payment) {
+			formService.makeForm(location,payment)
+				.then(function (res) {
+					console.log("form make", res);
+					//redirect to show form
+				})
+				.catch(function (err) {
+					alert("Error, form not generated", err);
+				});
 	};
 	
 	vm.deletePmt = function (location, payment, index) {

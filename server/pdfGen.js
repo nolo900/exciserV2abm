@@ -14,11 +14,15 @@
 	var generator = {
 		generatePDF: function(formBody){
 
+			console.log("Inside pdf generator:", formBody);
+
+
+
 			var estName = formBody.estName;
-			var estAddr1 = formBody.estAddr1;
-			var estAddr2 = formBody.estAddr2;
+			var estAddr1 = formBody.addr1;
+			var estAddr2 = formBody.addr2;
 			var licenseNum = formBody.licenseNum;
-			var salesTaxID = formBody.salesTaxID;
+			var salesTaxID = "salesTaxID";
 			var reportMonthYear = formBody.reportMonthYear;
 			//reportMonthYear should look like this -> "02/2017",
 			// I was getting it from bootstrap datepicker3
@@ -60,7 +64,7 @@
 			doc.pipe(fs.createWriteStream('./public/pdfs/' + pdfName + '.pdf'));  //creating a write stream
 
 
-			doc.image('./pdfs/templates/accAlcoholExcise.jpg', 0,0, {width: 650})
+			doc.image('./public/pdfs/templates/accAlcoholExcise.jpg', 0,0, {width: 650})
 				.text(estName,200,182)
 				.text(estAddr1, 200,211)
 				.text(estAddr2, 200,235)
