@@ -241,6 +241,18 @@ app.controller('dashboardCtrl', function ($http, userService, locationService) {
 
 		vm.payment = {reportMonth:'', grossSales: ''};
 	};
+	
+	vm.deletePmt = function (location, payment, index) {
+        location.payments.splice(index,1);
+		console.log('inside delete pmt:', location, "index: ", index);
+		locationService.updateLocation(location)
+			.then(function (res) {
+				console.log("Location pmt Updated", res)
+			})
+			.catch(function (err) {
+				alert('Error, location pmt not updated: ' + err);
+			});
+	}
 
 
 });

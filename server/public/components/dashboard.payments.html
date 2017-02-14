@@ -28,6 +28,7 @@
               <th>Sales</th>
               <th>Taxes</th>
               <th width="100">View</th>
+              <th colspan="1"></th>
             </tr>
           </thead>
           <tbody>
@@ -35,7 +36,8 @@
               <td>{{payment.reportMonth}}</td>
               <td>${{payment.grossSales}}</td>
               <td>${{payment.taxDue}}</td>
-              <td><a href="/">View PDF</a></td>
+              <td><a href={{payment.pdfURL}}>View PDF</a></td>
+              <td><a class="btn btn-danger btn-sm" ng-click="ctrl.deletePmt(location, payment, $index)">Delete</a></td>
           </tr>
           </tbody>
         </table>
