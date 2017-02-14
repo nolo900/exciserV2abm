@@ -154,16 +154,17 @@ app.service('formService', function ($http) {
 
 app.service('locationService', function ($http) {
     this.getLocations = function () {
-        return $http.get('http://localhost:3000/api/locations');
+        return $http.get('/api/locations');
     };
     this.getLocation = function (id) {
-        return $http.get('http://localhost:3000api/locations', id);
+        return $http.get('/api/locations', id);
     };
     this.addLocation = function (location) {
-        return $http.post('http://localhost:3000/api/locations', location);
+        return $http.post('/api/locations', location);
     };
     this.updateLocation = function (location) {
-        return $http.post('http://localhost:3000/api/locations', location, location._id);
+        console.log('in loc service post, updateLoc...', location);
+        return $http.post('/api/locations/' + location._id, location);
     }
 });
 
@@ -230,14 +231,15 @@ app.controller('dashboardCtrl', function ($http, userService, locationService) {
 		location.payments.push(vm.payment);
 
 	    console.log('inside update loc:', location);
-        vm.payment = {reportMonth:'', grossSales: ''};
-	    // locationService.updateLocation(location)
-			// .then(function (res) {
-			// 	console.log("Location Updated", res)
-			// })
-			// .catch(function (err) {
-			// 	alert('Error, location not updated: ' + err);
-			// });
+	    locationService.updateLocation(location)
+			.then(function (res) {
+				console.log("Location Updated", res)
+			})
+			.catch(function (err) {
+				alert('Error, location not updated: ' + err);
+			});
+
+		vm.payment = {reportMonth:'', grossSales: ''};
 	};
 
 
