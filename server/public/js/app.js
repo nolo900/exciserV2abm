@@ -161,6 +161,9 @@ app.service('locationService', function ($http) {
     };
     this.addLocation = function (location) {
         return $http.post('http://localhost:3000/api/locations', location);
+    };
+    this.updateLocation = function (location) {
+        return $http.post('http://localhost:3000/api/locations', location, location._id);
     }
 });
 
@@ -190,6 +193,8 @@ app.controller('dashboardCtrl', function ($http, userService, locationService) {
     vm.navToggle = "";
     vm.locations ={};
     vm.data = {};
+    vm.payments = [{reportMonth:'', grossSales: ''}];
+
 
     vm.locations = locationService.getLocations()
         .then(function (res) {
@@ -217,6 +222,24 @@ app.controller('dashboardCtrl', function ($http, userService, locationService) {
             vm.navToggle = "";
         }
     };
+
+
+	vm.updateLocation = function (location, payment) {
+		vm.payment = {reportMonth:payment.reportMonth, grossSales: payment.grossSales};
+	    console.log(vm.payment);
+		location.payments.push(vm.payment);
+
+	    console.log('inside update loc:', location);
+        vm.payment = {reportMonth:'', grossSales: ''};
+	    // locationService.updateLocation(location)
+			// .then(function (res) {
+			// 	console.log("Location Updated", res)
+			// })
+			// .catch(function (err) {
+			// 	alert('Error, location not updated: ' + err);
+			// });
+	};
+
 
 });
 

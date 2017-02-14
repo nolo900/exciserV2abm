@@ -1,6 +1,6 @@
 <article class="component">
   <div ng-repeat="location in ctrl.locations">
-    <p>Location: {{location}}</p>
+    <p>Payment: {{ctrl.location.payment}}</p>
     <div class="row">
       <div class="col-md-6">
         <div class="card card-location">
@@ -8,13 +8,13 @@
             <h2>{{location.estName}}</h2>
             <p class="form-group">
               <label for="">Select Month</label>
-              <input type="text" class="form-control" placeholder="Month">
+              <input ng-model='payment.reportMonth' type="text" class="form-control" placeholder="Month">
             </p>
             <p class="form-group">
-              <label for="">Total Sales</label>
-              <input type="text" class="form-control" placeholder="Enter your total alochol sales.">
+              <label for="">Gross Sales</label>
+              <input ng-model='payment.grossSales' type="text" class="form-control" placeholder="Enter your total alcohol sales.">
             </p>
-            <button class="btn btn-primary">Make Payment</button>
+            <button ng-click="ctrl.updateLocation(location,payment)" class="btn btn-primary">Make Payment</button>
           </div>
         </div>
       </div>
@@ -32,8 +32,8 @@
           </thead>
           <tbody>
             <tr ng-repeat="payment in location.payments">
-              <td>{{payment.month}}</td>
-              <td>${{payment.totalSales}}</td>
+              <td>{{payment.reportMonth}}</td>
+              <td>${{payment.grossSales}}</td>
               <td>${{payment.taxDue}}</td>
               <td><a href="/">View PDF</a></td>
           </tr>
