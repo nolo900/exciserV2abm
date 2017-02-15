@@ -1,0 +1,8 @@
+.idea
+.DS_Store
+node_modules
+passport_secrets.js
+npm-debug.log
+style.css.map
+client/pdfs/generatedForms
+etc
