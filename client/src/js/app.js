@@ -47,7 +47,7 @@ app.config(function ($urlRouterProvider, $stateProvider) {
 app.service('userService', function ($http) {
     console.log('userService is alive!');
     this.authUser = function () {
-        return $http.get("http://localhost:3000/api/users");
+        return $http.get("/api/users");
     };
 
     this.updateUser = function (user) {
