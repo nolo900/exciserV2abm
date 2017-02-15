@@ -25,7 +25,7 @@
               <th>Month</th>
               <th>Sales</th>
               <th>Taxes</th>
-              <th width="100" colspan="2">View</th>
+              <th width="100">View</th>
             </tr>
           </thead>
           <tbody>
@@ -33,7 +33,10 @@
               <td>{{payment.reportMonth}}</td>
               <td>${{payment.grossSales}}</td>
               <td>${{payment.taxDue}}</td>
-              <td><button class="btn btn-primary btn-sm" ng-click="ctrl.makePDF(location,payment)">View PDF</button> <button class="btn btn-danger btn-sm" ng-click="ctrl.deletePmt(location, payment, $index)">Delete</button></td>
+              <td>
+                <a class="btn btn-info btn-sm" ng-click="ctrl.makePDF(payment)">View PDF</a>
+                <a class="btn btn-danger btn-sm" ng-click="ctrl.deletePmt(location, payment, $index)">Delete</a>
+              </td>
           </tr>
           </tbody>
         </table>

@@ -57,15 +57,6 @@ router.post('/:id', function (req, res, next) {
 
 });
 
-router.post('/makepdf', function (req, res, next) {
-	console.log("in makepdf route", req.body);
-
-	//PDFgen.generatePDF(req.body);
-
-
-
-})
-
 //delete
 router.delete('/:id', function (req, res, next) {
 	console.log(req.body);
