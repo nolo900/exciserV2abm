@@ -2,13 +2,13 @@
   <div ng-repeat="location in ctrl.locations">
     <!--<p>Payment: {{ctrl.location.payment}}</p>-->
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-5">
         <div class="card card-location">
           <div class="card-block">
             <h2>{{location.estName}}</h2>
             <p class="form-group">
               <label for="">Select Month</label>
-              <input ng-model='payment.reportMonth' type="text" class="form-control" placeholder="Month">
+              <input ng-model='payment.reportMonth' type="month" class="form-control" placeholder="Month">
             </p>
             <p class="form-group">
               <label for="">Gross Sales</label>
@@ -18,17 +18,14 @@
           </div>
         </div>
       </div>
-      
-      
-      <div class="col-md-6">
+      <div class="col-md-7">
         <table class="table table-striped">
           <thead>
             <tr>
               <th>Month</th>
               <th>Sales</th>
               <th>Taxes</th>
-              <th width="100">View</th>
-              <th colspan="1"></th>
+              <th width="100" colspan="2">View</th>
             </tr>
           </thead>
           <tbody>
@@ -36,8 +33,7 @@
               <td>{{payment.reportMonth}}</td>
               <td>${{payment.grossSales}}</td>
               <td>${{payment.taxDue}}</td>
-              <td><a class="btn btn-info btn-sm" ng-click="ctrl.makePDF(location,payment)">View PDF</a></td>
-              <td><a class="btn btn-danger btn-sm" ng-click="ctrl.deletePmt(location, payment, $index)">Delete</a></td>
+              <td><button class="btn btn-primary btn-sm" ng-click="ctrl.makePDF(location,payment)">View PDF</button> <button class="btn btn-danger btn-sm" ng-click="ctrl.deletePmt(location, payment, $index)">Delete</button></td>
           </tr>
           </tbody>
         </table>
