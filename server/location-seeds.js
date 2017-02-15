@@ -35,7 +35,8 @@ Location.remove({})
     .then(function() {
         console.log('creating some new movies...');
         const Loc1     = new Location({
-            userID: "58a4be663e23cf0011113b3f",
+            userID: "5875389db15714097395070a",
+            estName: "Wings",
             addr1: "123 Main Street",
             addr2: "",
             city: "Athens",
@@ -45,7 +46,8 @@ Location.remove({})
             licenseNum: "12345q332f"
         });
         const Loc2 = new Location({
-            userID: "58a4be663e23cf0011113b3f",
+            userID: "5875389db15714097395070a",
+            estName: "Cheers",
             addr1: "456 Sampson Street",
             addr2: "",
             city: "Athens",
@@ -55,7 +57,7 @@ Location.remove({})
             licenseNum: "12345q332f"
         });
         const Loc3 = new Location({
-            userID: "58a4be663e23cf0011113b3f",
+            userID: "5875389db15714097395070a",
             addr1: "187 Warren Ave",
             addr2: "",
             city: "Athens",

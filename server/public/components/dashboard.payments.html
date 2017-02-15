@@ -30,7 +30,7 @@
           </thead>
           <tbody>
             <tr ng-repeat="payment in location.payments">
-              <td>{{payment.reportMonth}}</td>
+              <td>{{payment.reportMonth | date:'MM/yyyy'}}</td>
               <td>${{payment.grossSales}}</td>
               <td>${{payment.taxDue}}</td>
               <td><button class="btn btn-primary btn-sm" ng-click="ctrl.makePDF(location,payment)">View PDF</button> <button class="btn btn-danger btn-sm" ng-click="ctrl.deletePmt(location, payment, $index)">Delete</button></td>
