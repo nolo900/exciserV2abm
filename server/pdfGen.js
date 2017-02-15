@@ -86,5 +86,3 @@ var generator = {
 };
 
 module.exports = generator;
-
-/Users/austinmiles/ga/wdi/projects/exciserV2/server/public/pdfs/pdfTemplates/accAlcoholExcise.jpg
