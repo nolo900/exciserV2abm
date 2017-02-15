@@ -7,10 +7,11 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/signup', function (req, res, next) {
+    console.log(req.body);
     var signUpStrategy = passport.authenticate('local-signup', {
         successRedirect: '/',
         failureRedirect: '/error',
-        failureFlash: true
+        // failureFlash: true
     });
     return signUpStrategy(req, res, next);
 });
@@ -20,7 +21,7 @@ router.post('/login', function (req, res, next) {
     var loginStrategy = passport.authenticate('local-login', {
         successRedirect: '/',
         failureRedirect: '/login',
-        failureFlash: true
+        // failureFlash: true
     });
     return loginStrategy(req, res, next);
 });

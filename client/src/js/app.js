@@ -326,6 +326,9 @@ app.controller('signupCtrl', function ($http, $location) {
         var url = '/signup';
         var user = vm.user;
 
+        console.log(vm.user);
+
+
         $http.post(url, user)
             .then(
                 function (res) {
@@ -333,7 +336,7 @@ app.controller('signupCtrl', function ($http, $location) {
                     $location.path("/profile")
                 }, //success
                 function (res) {
-                    console.log('signup error!');
+                    console.log('signup error!', res);
                     $location.path('/login');
                 } //error
             )
