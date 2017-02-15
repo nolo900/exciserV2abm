@@ -22,4 +22,4 @@ On a monthly basis, owners have to do the following:
 * MEAN Stack
     * Passport
 * Bootstrap 4
-* PDFkiut
+* PDFkit
