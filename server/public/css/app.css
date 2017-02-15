@@ -6209,9 +6209,6 @@ a.text-gray-dark:focus, a.text-gray-dark:hover {
       background: rgba(255, 255, 255, 0);
       z-index: 100; }
 
-#user-form {
-  max-width: 24rem; }
-
 .card-location {
   border-top: 2px solid #0275d8; }
 

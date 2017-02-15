@@ -6,7 +6,7 @@
         <strong>{{ctrl.user.firstName}} {{ctrl.user.lastName}}</strong>
       </a>
 
-      <a href="dashboard.logout"><span>Log Out</span></a>
+      <a href="/logout"><span>Logout</span></a>
 
     </article>
     <hr>
@@ -18,9 +18,9 @@
     <hr>
     <h5>Actions</h5>
     <ul>
-      <li><a data-toggle="modal" data-target=".new-location-modal">Add a Location</a></li>
+      <!--<li><a data-toggle="modal" data-target=".new-location-modal">Add a Location</a></li>-->
       <li><a ui-sref="dashboard.profile" href="">Edit Profile</a></li>
-      <li><a ui-sref="dashboard.logout">Logout</a></li>
+      <li><a href="/logout">Logout</a></li>
     </ul>
   </div>
 </aside>

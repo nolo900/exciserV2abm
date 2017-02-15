@@ -162,7 +162,7 @@ app.controller('dashboardCtrl', function ($http, userService, locationService, f
 					alert("Error, form not generated", err);
 				});
 	};
-	
+
 	vm.deletePmt = function (location, payment, index) {
         location.payments.splice(index,1);
 		console.log('inside delete pmt:', location, "index: ", index);
@@ -200,14 +200,14 @@ app.controller('chartCtrl', function (userService) {
         chartMax = 0;
 
     function pullSales() {
-        // var arr = vm.user.locations;
-        // for (let i = 0; i < arr.length; i++) {
-        //     var temp = [];
-        //     for (let ii = 0; ii < arr[i].payments.length; ii++) {
-        //         temp.push(arr[i].payments[ii].taxDue);
-        //     }
-        //     vm.data.push(temp);
-        // }
+        var arr = vm.user.locations;
+        for (let i = 0; i < arr.length; i++) {
+            var temp = [];
+            for (let ii = 0; ii < arr[i].payments.length; ii++) {
+                temp.push(arr[i].payments[ii].taxDue);
+            }
+            vm.data.push(temp);
+        }
     }
 
     function chartMinMax() {
@@ -305,7 +305,7 @@ app.controller('loginCtrl', function ($http, $location, userService) {
             .then(
                 function (res) {
                     console.log("login success!");
-                    $location.path('/profile');
+                    $location.path('/dashboard');
                 },
                 function (res) {
                     console.log("login failure");
@@ -377,7 +377,7 @@ app.controller('FormCtrl', function ($scope, $http) {
             .then(
                 console.log('submitted')
             ).catch(function (err) {
-            console.log(err)
-        });
+                console.log(err)
+            });
     };
 });

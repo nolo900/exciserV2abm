@@ -6,7 +6,7 @@
     <div class="navbar__nav" ng-show="ctrl.user">
         <a ui-sref="dashboard.home" ui-sref-active="active">Dashboard</a>
         <a ui-sref="dashboard.profile" ui-sref-active="active">Profile</a>
-        <a href="#" ng-click="ctrl.logOut()">Logout</a>
+        <a href="/logout">Logout</a>
     </div>
     <div class="navbar__nav" ng-show="!ctrl.user">
         <a ui-sref="login" ui-sref-active="active">Login</a>
