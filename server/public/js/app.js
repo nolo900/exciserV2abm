@@ -142,8 +142,8 @@ app.service('userService', function ($http) {
 
 app.service('formService', function ($http) {
     console.log('formService is alive');
-    this.makeForm = function (location, payment) {
-        return $http.post('/api/locations/makepdf', location,payment);
+    this.makeForm = function (payment) {
+        return $http.post('/api/forms/makepdf', payment);
     }
 });
 
@@ -236,9 +236,11 @@ app.controller('dashboardCtrl', function ($http, userService, locationService, f
 
 	};
 
-	vm.makePDF = function (location, payment) {
-			formService.makeForm(location,payment)
+	vm.makePDF = function (payment) {
+		console.log('payment:', payment);
+			formService.makeForm(payment)
 				.then(function (res) {
+					console.log('payment:', payment);
 					console.log("form make", res);
 					//redirect to show form
 				})

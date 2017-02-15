@@ -74,8 +74,8 @@ app.use(function (req, res, next) {
 
 app.use('/', index);
 app.use('/api/users/', users);
-app.use('/api/locations', locations);
-app.use('/api/forms',forms);
+app.use('/api/locations/', locations);
+app.use('/api/forms/',forms);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

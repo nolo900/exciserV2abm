@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Form = require('../models/generatedFormModel');
+var PDFgen = require('../pdfGen');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -14,6 +15,14 @@ router.get('/', function(req, res, next) {
 			res.status(400).jsonp({forms: "Error getting forms"});
 		})
 });
+
+router.post('/makepdf', function (req, res, next) {
+	console.log("in makepdf route", req.body);
+
+	PDFgen.generatePDF(req.body);
+	next();
+
+})
 
 module.exports = router;
 
