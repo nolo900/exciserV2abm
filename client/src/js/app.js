@@ -49,12 +49,7 @@ app.service('userService', function ($http) {
     this.authUser = function () {
         return $http.get("http://localhost:3000/api/users");
     };
-    // this.getUsers = function () {
-    //     return $http.get('/api/users');
-    // };
-    // this.getUser = function () {
-    //     return $http.get('/api/users', id);
-    // };
+
     this.updateUser = function (user) {
         return $http.post('/api/users/:id', user, user._id);
     };
@@ -63,25 +58,27 @@ app.service('userService', function ($http) {
 
 app.service('formService', function ($http) {
     console.log('formService is alive');
-    this.saveForm = function () {
-        return $http.post('/api/forms/:id', form, form._id);
+    this.makeForm = function (location, payment) {
+        return $http.post('/api/locations/makepdf', location,payment);
     }
 });
 
 app.service('locationService', function ($http) {
     this.getLocations = function () {
-        return $http.get('http://localhost:3000/api/locations');
+        return $http.get('/api/locations');
     };
     this.getLocation = function (id) {
-        return $http.get('http://localhost:3000api/locations', id);
+        return $http.get('/api/locations', id);
     };
     this.addLocation = function (location) {
-        return $http.post('http://localhost:3000/api/locations', location);
+        return $http.post('/api/locations', location);
+    };
+    this.updateLocation = function (location) {
+        console.log('in loc service post, updateLoc...', location);
+        return $http.post('/api/locations/' + location._id, location);
     }
 });
 
-// delete this comment
-// new comment to delete
 ////////////// CONTROLLERS ////////////////////////////////////////////////////////
 
 app.controller('homeCtrl', function (userService) {
@@ -99,13 +96,15 @@ app.controller('homeCtrl', function (userService) {
 		});
 });
 
-app.controller('dashboardCtrl', function ($http, userService, locationService) {
+app.controller('dashboardCtrl', function ($http, userService, locationService, formService) {
     var vm = this;
     vm.title = 'Dashboard';
     vm.user = {};
     vm.navToggle = "";
     vm.locations ={};
     vm.data = {};
+    vm.payments = [{reportMonth:'', grossSales: ''}];
+
 
     vm.locations = locationService.getLocations()
         .then(function (res) {
@@ -133,6 +132,49 @@ app.controller('dashboardCtrl', function ($http, userService, locationService) {
             vm.navToggle = "";
         }
     };
+
+
+	vm.updateLocation = function (location, payment) {
+		vm.payment = {reportMonth:payment.reportMonth, grossSales: payment.grossSales};
+	    console.log(vm.payment);
+		location.payments.push(vm.payment);
+
+	    console.log('inside update loc:', location);
+	    locationService.updateLocation(location)
+			.then(function (res) {
+				console.log("Location Updated", res)
+			})
+			.catch(function (err) {
+				alert('Error, location not updated: ' + err);
+			});
+
+		vm.payment = {reportMonth:'', grossSales: ''};
+
+	};
+
+	vm.makePDF = function (location, payment) {
+			formService.makeForm(location,payment)
+				.then(function (res) {
+					console.log("form make", res);
+					//redirect to show form
+				})
+				.catch(function (err) {
+					alert("Error, form not generated", err);
+				});
+	};
+	
+	vm.deletePmt = function (location, payment, index) {
+        location.payments.splice(index,1);
+		console.log('inside delete pmt:', location, "index: ", index);
+		locationService.updateLocation(location)
+			.then(function (res) {
+				console.log("Location pmt Updated", res)
+			})
+			.catch(function (err) {
+				alert('Error, location pmt not updated: ' + err);
+			});
+	}
+
 
 });
 

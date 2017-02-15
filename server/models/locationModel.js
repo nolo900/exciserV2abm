@@ -10,7 +10,8 @@ var LocationSchema = new mongoose.Schema({
 	state: String,
 	zip: String,
 	county: String,
-	licenseNum: String
+	licenseNum: String,
+	payments: []
 
 },{
 	timestamps: true

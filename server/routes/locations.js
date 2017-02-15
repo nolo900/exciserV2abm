@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Location = require('../models/locationModel');
+var PDFgen = require('../pdfGen');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -42,9 +43,9 @@ router.post('/add', function (req, res, next) {
 
 //Update
 router.post('/:id', function (req, res, next) {
-	console.log(req.body);
+	console.log("in post Locations router:", req.body);
 
-	Location.findByIdAndUpdate({_id: req.params.id}, req.body)
+	Location.findByIdAndUpdate({_id: req.body._id}, req.body)
 		.then(function(savedLocation) {
 			console.log("updating location: ", savedLocation );
 			res.jsonp({ location: savedLocation });
@@ -54,8 +55,16 @@ router.post('/:id', function (req, res, next) {
 			return next(err);
 		});
 
-
 });
+
+router.post('/makepdf', function (req, res, next) {
+	console.log("in makepdf route", req.body);
+
+	//PDFgen.generatePDF(req.body);
+
+
+
+})
 
 //delete
 router.delete('/:id', function (req, res, next) {
